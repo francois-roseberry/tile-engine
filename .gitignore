@@ -1,4 +1,3 @@
-./TileEngine.suo
-./TileEngine/TileEngine/TileEngine.csproj.user
-./TileEngine/TileEngine/obj
-./TileEngine/TileEngineContent/obj
+*.suo
+*.csproj.user
+**/obj/
