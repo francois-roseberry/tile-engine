@@ -14,12 +14,13 @@ namespace TileEngine
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class TileEngine : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private Texture2D tileset;
 
-        public Game1()
+        public TileEngine()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -46,6 +47,8 @@ namespace TileEngine
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            tileset = Content.Load<Texture2D>(@"Tilesets\base-64x64");
 
             // TODO: use this.Content to load your game content here
         }
@@ -81,9 +84,21 @@ namespace TileEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            for (int x = 0; x < 10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    spriteBatch.Draw(
+                        tileset,
+                        new Rectangle(x * 64 + (y % 2 == 0 ? 0 : 32), y * 16, 64, 64),
+                        new Rectangle(0, 0, 64, 64),
+                        Color.White);
+                }
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
