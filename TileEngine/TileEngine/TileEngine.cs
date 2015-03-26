@@ -17,49 +17,12 @@ namespace TileEngine
     public class TileEngine : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private Texture2D tileset;
 
         public TileEngine()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
-
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            tileset = Content.Load<Texture2D>(@"Tilesets\base-64x64");
-
-            // TODO: use this.Content to load your game content here
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
+            Components.Add(new UI(this));
         }
 
         /// <summary>
@@ -73,8 +36,6 @@ namespace TileEngine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -86,21 +47,23 @@ namespace TileEngine
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
-            for (int x = 0; x < 10; x++)
-            {
-                for (int y = 0; y < 10; y++)
-                {
-                    spriteBatch.Draw(
-                        tileset,
-                        new Rectangle(x * 64 + (y % 2 == 0 ? 0 : 32), y * 16, 64, 64),
-                        new Rectangle(0, 0, 64, 64),
-                        Color.White);
-                }
-            }
-            spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
+
+#if WINDOWS || XBOX
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        static void Main(string[] args)
+        {
+            using (TileEngine game = new TileEngine())
+            {
+                game.Run();
+            }
+        }
+    }
+#endif
 }
