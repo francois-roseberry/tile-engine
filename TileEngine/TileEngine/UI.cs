@@ -18,19 +18,20 @@ namespace TileEngine
     public class UI : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private Texture2D tileset;
+        private Map map;
         private Texture2D cursor;
         private Vector2 mousePosition;
 
         public UI(Game game)
             : base(game)
         {
+            map = new Map(new DefaultMapRenderer());
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            tileset = Game.Content.Load<Texture2D>(@"Tilesets\base-64x64");
+            map.LoadContent(Game.Content);
             cursor = Game.Content.Load<Texture2D>(@"cursor");
         }
 
@@ -50,18 +51,7 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            // Draw map
-            for (int x = 0; x < 10; x++)
-            {
-                for (int y = 0; y < 10; y++)
-                {
-                    spriteBatch.Draw(
-                        tileset,
-                        new Rectangle(x * 64 + (y % 2 == 0 ? 0 : 32), y * 16, 64, 64),
-                        new Rectangle(0, 0, 64, 64),
-                        Color.White);
-                }
-            }
+            map.Draw(spriteBatch);
 
             // Draw mouse
             spriteBatch.Draw(cursor, mousePosition, Color.White);
