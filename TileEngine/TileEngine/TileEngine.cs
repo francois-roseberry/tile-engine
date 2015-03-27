@@ -22,7 +22,7 @@ namespace TileEngine
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Components.Add(new UI(this));
+            Components.Add(new MainScreen(this));
         }
 
         /// <summary>
