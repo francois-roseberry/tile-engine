@@ -10,11 +10,20 @@ namespace TileEngine
 {
     public class Map
     {
+        private List<Tile> tiles = new List<Tile>();
         private readonly IMapRenderer renderer;    
 
         public Map(IMapRenderer renderer)
         {
             this.renderer = renderer;
+
+            for (int x = 0; x < 10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    tiles.Add(new Tile(x, y));
+                }
+            }
         }
 
         public void LoadContent(ContentManager content)
@@ -24,12 +33,9 @@ namespace TileEngine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < 10; x++)
+            foreach (Tile tile in tiles)
             {
-                for (int y = 0; y < 10; y++)
-                {
-                    renderer.DrawTile(spriteBatch, new Point(x, y));
-                }
+                renderer.DrawTile(spriteBatch, tile);             
             }
         }
     }

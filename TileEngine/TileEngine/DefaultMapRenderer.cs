@@ -22,7 +22,7 @@ namespace TileEngine
             tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
         }
 
-        public void DrawTile(SpriteBatch spriteBatch, Point coords)
+        public void DrawTile(SpriteBatch spriteBatch, Tile coords)
         {
             bool evenRow = coords.Y % 2 == 0;
             int x = coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);

@@ -110,6 +110,7 @@
     <Compile Include="DefaultMapRenderer.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="IMapRenderer.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileEngine.cs" />
