@@ -28,7 +28,7 @@ namespace TileEngine
             {
                 for (int y = 0; y < 10; y++)
                 {
-                    renderer.DrawTile(spriteBatch, x * 64 + (y % 2 == 0 ? 0 : 32), y * 16);
+                    renderer.DrawTile(spriteBatch, new Point(x, y));
                 }
             }
         }
