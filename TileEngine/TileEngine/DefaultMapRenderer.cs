@@ -22,11 +22,11 @@ namespace TileEngine
             tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
         }
 
-        public void DrawTile(SpriteBatch spriteBatch, Tile coords)
+        public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords)
         {
             bool evenRow = coords.Y % 2 == 0;
-            int x = coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
-            int y = coords.Y * TILE_STEP_Y;
+            int x = camera.X + coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
+            int y = camera.Y + coords.Y * TILE_STEP_Y;
 
             spriteBatch.Draw(
                 tileset,

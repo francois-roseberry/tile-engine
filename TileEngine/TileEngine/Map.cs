@@ -31,11 +31,11 @@ namespace TileEngine
             renderer.LoadContent(content);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(Camera camera, SpriteBatch spriteBatch)
         {
             foreach (Tile tile in tiles)
             {
-                renderer.DrawTile(spriteBatch, tile);             
+                renderer.DrawTile(spriteBatch, camera, tile);             
             }
         }
     }

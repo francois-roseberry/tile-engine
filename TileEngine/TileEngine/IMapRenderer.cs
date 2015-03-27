@@ -11,6 +11,6 @@ namespace TileEngine
     public interface IMapRenderer
     {
         void LoadContent(ContentManager content);
-        void DrawTile(SpriteBatch spriteBatch, Tile coords);
+        void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords);
     }
 }

@@ -21,6 +21,7 @@ namespace TileEngine
         private Map map;
         private Texture2D cursor;
         private Vector2 mousePosition;
+        private Camera camera = new Camera();
 
         public UI(Game game)
             : base(game)
@@ -51,7 +52,7 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            map.Draw(spriteBatch);
+            map.Draw(camera, spriteBatch);
 
             // Draw mouse
             spriteBatch.Draw(cursor, mousePosition, Color.White);
