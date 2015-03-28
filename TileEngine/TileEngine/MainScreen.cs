@@ -19,10 +19,9 @@ namespace TileEngine
     {
         private SpriteBatch spriteBatch;
         private Map map;
-        private Texture2D cursor;
-        private Vector2 mousePosition;
         private Viewport viewport;
         private Camera camera = Camera.Default();
+        private MouseCursor cursor = new MouseCursor();
 
         public MainScreen(Game game)
             : base(game)
@@ -35,7 +34,7 @@ namespace TileEngine
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             map.LoadContent(Game.Content);
-            cursor = Game.Content.Load<Texture2D>(@"cursor");
+            cursor.LoadContent(Game.Content);
         }
 
         /// <summary>
@@ -47,8 +46,7 @@ namespace TileEngine
             KeyboardState kstate = Keyboard.GetState();
             map.Renderer.DrawDebugInfo = kstate.IsKeyDown(Keys.D);
 
-            MouseState state = Mouse.GetState();
-            mousePosition = new Vector2(state.X, state.Y);
+            cursor.Update();
 
             base.Update(gameTime);
         }
@@ -58,9 +56,7 @@ namespace TileEngine
             spriteBatch.Begin();
 
             viewport.Draw(camera, spriteBatch);
-
-            // Draw mouse
-            spriteBatch.Draw(cursor, mousePosition, Color.White);
+            cursor.Draw(spriteBatch);
 
             spriteBatch.End();
 

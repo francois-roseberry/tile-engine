@@ -112,6 +112,7 @@
     <Compile Include="IDrawable.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="IMapRenderer.cs" />
+    <Compile Include="MouseCursor.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="MainScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
