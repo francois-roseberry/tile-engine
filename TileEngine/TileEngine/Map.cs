@@ -19,7 +19,7 @@ namespace TileEngine
 
             for (int x = 0; x < 10; x++)
             {
-                for (int y = 0; y < 10; y++)
+                for (int y = 0; y < 20; y++)
                 {
                     tiles.Add(new Tile(x, y));
                 }

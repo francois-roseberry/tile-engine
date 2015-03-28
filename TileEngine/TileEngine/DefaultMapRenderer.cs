@@ -46,7 +46,7 @@ namespace TileEngine
 
         private void DrawCoords(SpriteBatch spriteBatch, Tile coords, int x, int y)
         {
-            string message = String.Format("({0},{0})", coords.X, coords.Y);
+            string message = String.Format("({0},{1})", coords.X, coords.Y);
             Vector2 position = new Vector2(x + 20, y + 40);
             spriteBatch.DrawString(debugFont, message, position, Color.White);
         }
