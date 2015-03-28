@@ -109,12 +109,14 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="DefaultMapRenderer.cs" />
+    <Compile Include="IDrawable.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="IMapRenderer.cs" />
     <Compile Include="Tile.cs" />
-    <Compile Include="UI.cs" />
+    <Compile Include="MainScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileEngine.cs" />
+    <Compile Include="Viewport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

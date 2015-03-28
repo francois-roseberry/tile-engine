@@ -21,12 +21,14 @@ namespace TileEngine
         private Map map;
         private Texture2D cursor;
         private Vector2 mousePosition;
-        private Camera camera = new Camera();
+        private Viewport viewport;
+        private Camera camera = Camera.Default();
 
         public MainScreen(Game game)
             : base(game)
         {
             map = new Map(new DefaultMapRenderer());
+            viewport = new Viewport(map);
         }
 
         protected override void LoadContent()
@@ -52,7 +54,7 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            map.Draw(camera, spriteBatch);
+            viewport.Draw(camera, spriteBatch);
 
             // Draw mouse
             spriteBatch.Draw(cursor, mousePosition, Color.White);
