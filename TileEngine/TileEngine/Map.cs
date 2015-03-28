@@ -26,6 +26,8 @@ namespace TileEngine
             }
         }
 
+        public IMapRenderer Renderer { get { return renderer; } }
+
         public void LoadContent(ContentManager content)
         {
             renderer.LoadContent(content);

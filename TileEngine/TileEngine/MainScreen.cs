@@ -44,6 +44,9 @@ namespace TileEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            KeyboardState kstate = Keyboard.GetState();
+            map.Renderer.DrawDebugInfo = kstate.IsKeyDown(Keys.D);
+
             MouseState state = Mouse.GetState();
             mousePosition = new Vector2(state.X, state.Y);
 

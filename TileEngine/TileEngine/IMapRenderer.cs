@@ -12,5 +12,6 @@ namespace TileEngine
     {
         void LoadContent(ContentManager content);
         void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords);
+        bool DrawDebugInfo { get; set; }
     }
 }

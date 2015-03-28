@@ -18,6 +18,8 @@ namespace TileEngine
         private Texture2D tileset;
         private SpriteFont debugFont;
 
+        public bool DrawDebugInfo { get; set; }
+
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
@@ -36,7 +38,10 @@ namespace TileEngine
                 new Rectangle(0, 0, TILE_WIDTH, TILE_HEIGHT),
                 Color.White);
 
-            DrawCoords(spriteBatch, coords, x, y);
+            if (DrawDebugInfo)
+            {
+                DrawCoords(spriteBatch, coords, x, y);
+            }
         }
 
         private void DrawCoords(SpriteBatch spriteBatch, Tile coords, int x, int y)
