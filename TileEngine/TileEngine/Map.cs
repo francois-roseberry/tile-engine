@@ -10,6 +10,9 @@ namespace TileEngine
 {
     public class Map
     {
+        private static const int NB_TILES_WIDTH = 20;
+        private static const int NB_TILES_HEIGHT = 50;
+
         private List<Tile> tiles = new List<Tile>();
         private readonly IMapRenderer renderer;    
 
@@ -17,9 +20,9 @@ namespace TileEngine
         {
             this.renderer = renderer;
 
-            for (int x = 0; x < 10; x++)
+            for (int x = 0; x < NB_TILES_WIDTH; x++)
             {
-                for (int y = 0; y < 20; y++)
+                for (int y = 0; y < NB_TILES_HEIGHT; y++)
                 {
                     tiles.Add(new Tile(x, y));
                 }
