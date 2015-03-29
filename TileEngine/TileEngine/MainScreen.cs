@@ -19,7 +19,6 @@ namespace TileEngine
     {
         private SpriteBatch spriteBatch;
         private Map map;
-        private Viewport viewport;
         private Camera camera = Camera.Default();
         private MouseCursor cursor = new MouseCursor();
 
@@ -27,7 +26,6 @@ namespace TileEngine
             : base(game)
         {
             map = new Map(new DefaultMapRenderer());
-            viewport = new Viewport(map);
         }
 
         protected override void LoadContent()
@@ -55,7 +53,7 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            viewport.Draw(camera, spriteBatch);
+            map.Draw(camera, spriteBatch);
             cursor.Draw(spriteBatch);
 
             spriteBatch.End();

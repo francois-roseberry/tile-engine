@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TileEngine
 {
-    public class Map : IDrawable
+    public class Map
     {
         private List<Tile> tiles = new List<Tile>();
         private readonly IMapRenderer renderer;    
