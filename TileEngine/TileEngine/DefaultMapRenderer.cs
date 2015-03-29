@@ -10,6 +10,8 @@ namespace TileEngine
 {
     class DefaultMapRenderer : IMapRenderer
     {
+        private const int BASE_OFFSET_X = -TILE_WIDTH / 2;
+        private const int BASE_OFFSET_Y = -3 * TILE_HEIGHT / 4;
         private const int TILE_WIDTH = 64;
         private const int TILE_HEIGHT = 64;
         private const int TILE_STEP_Y = 16;
@@ -29,8 +31,8 @@ namespace TileEngine
         public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords)
         {
             bool evenRow = coords.Y % 2 == 0;
-            int x = camera.X + coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
-            int y = camera.Y + coords.Y * TILE_STEP_Y;
+            int x = BASE_OFFSET_X + camera.X + coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
+            int y = BASE_OFFSET_Y + camera.Y + coords.Y * TILE_STEP_Y;
 
             spriteBatch.Draw(
                 tileset,

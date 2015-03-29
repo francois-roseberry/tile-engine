@@ -10,8 +10,8 @@ namespace TileEngine
 {
     public class Map
     {
-        private static const int NB_TILES_WIDTH = 20;
-        private static const int NB_TILES_HEIGHT = 50;
+        private const int NB_TILES_WIDTH = 20;
+        private const int NB_TILES_HEIGHT = 50;
 
         private List<Tile> tiles = new List<Tile>();
         private readonly IMapRenderer renderer;    
