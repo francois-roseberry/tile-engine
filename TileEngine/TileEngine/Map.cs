@@ -8,8 +8,11 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TileEngine
 {
-    public class Map
-    {
+    public class Map : IScrollable
+    {      
+        public const int TILE_WIDTH = 64;
+        public const int TILE_HEIGHT = 64;
+
         private const int NB_TILES_WIDTH = 20;
         private const int NB_TILES_HEIGHT = 50;
 
@@ -28,6 +31,10 @@ namespace TileEngine
                 }
             }
         }
+
+        public int Width { get { return (NB_TILES_WIDTH - 1) * TILE_WIDTH; } }
+
+        public int Height { get { return (NB_TILES_HEIGHT - 1) * TILE_HEIGHT/4; } }
 
         public IMapRenderer Renderer { get { return renderer; } }
 

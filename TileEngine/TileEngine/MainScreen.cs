@@ -41,9 +41,12 @@ namespace TileEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            KeyboardState kstate = Keyboard.GetState();
-            map.Renderer.DrawDebugInfo = kstate.IsKeyDown(Keys.D);
+            KeyboardState state = Keyboard.GetState();
+            map.Renderer.DrawDebugInfo = state.IsKeyDown(Keys.D);
 
+            int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+            int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+            camera = camera.Update(viewportWidth, viewportHeight, map);
             cursor.Update();
 
             base.Update(gameTime);

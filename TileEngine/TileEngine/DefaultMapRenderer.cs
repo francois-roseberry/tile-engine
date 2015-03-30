@@ -10,10 +10,8 @@ namespace TileEngine
 {
     class DefaultMapRenderer : IMapRenderer
     {
-        private const int BASE_OFFSET_X = -TILE_WIDTH / 2;
-        private const int BASE_OFFSET_Y = -3 * TILE_HEIGHT / 4;
-        private const int TILE_WIDTH = 64;
-        private const int TILE_HEIGHT = 64;
+        private const int BASE_OFFSET_X = -1 * Map.TILE_WIDTH / 2;
+        private const int BASE_OFFSET_Y = -3 * Map.TILE_HEIGHT / 4;
         private const int TILE_STEP_Y = 16;
         private const int ODD_ROW_X_OFFSET = 32;
 
@@ -31,13 +29,13 @@ namespace TileEngine
         public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords)
         {
             bool evenRow = coords.Y % 2 == 0;
-            int x = BASE_OFFSET_X + camera.X + coords.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
-            int y = BASE_OFFSET_Y + camera.Y + coords.Y * TILE_STEP_Y;
+            int x = BASE_OFFSET_X - camera.X + coords.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
+            int y = BASE_OFFSET_Y - camera.Y + coords.Y * TILE_STEP_Y;
 
             spriteBatch.Draw(
                 tileset,
-                new Rectangle(x, y, TILE_WIDTH, TILE_HEIGHT),
-                new Rectangle(0, 0, TILE_WIDTH, TILE_HEIGHT),
+                new Rectangle(x, y, Map.TILE_WIDTH, Map.TILE_HEIGHT),
+                new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT),
                 Color.White);
 
             if (DrawDebugInfo)

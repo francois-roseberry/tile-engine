@@ -8,6 +8,7 @@ namespace TileEngine
 {
     public class Camera
     {
+        private const int SCROLL_BUFFER = 50;
         private readonly int x;
         private readonly int y;
 
@@ -25,6 +26,140 @@ namespace TileEngine
         public Camera Move(int dx, int dy)
         {
             return new Camera(x + dx, y + dy);
+        }
+
+        private enum ScrollingDirection
+        {
+            UPLEFT,
+            LEFT,
+            DOWNLEFT,
+            DOWN,
+            DOWNRIGHT,
+            RIGHT,
+            UPRIGHT,
+            UP,
+            NONE
+        }
+
+        public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
+        {
+            ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);
+            switch (scrolling)
+            {
+                case ScrollingDirection.UPLEFT:
+                    if (CanMoveUp() && CanMoveLeft())
+                    {
+                        return Move(-1, -1);
+                    }
+                    break;
+                case ScrollingDirection.UP:
+                    if (CanMoveUp())
+                    {
+                        return Move(0, -1);
+                    }
+                    break;
+                case ScrollingDirection.UPRIGHT:
+                    if (CanMoveUp() && CanMoveRight(scrollable.Height - viewportHeight))
+                    {
+                        return Move(1, -1);
+                    }
+                    break;
+                case ScrollingDirection.DOWNLEFT:
+                    if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveLeft())
+                    {
+                        return Move(-1, 1);
+                    }
+                    break;
+                case ScrollingDirection.DOWN:
+                    if (CanMoveDown(scrollable.Height - viewportHeight))
+                    {
+                        return Move(0, 1);
+                    }
+                    break;
+                case ScrollingDirection.DOWNRIGHT:
+                    if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveRight(scrollable.Width - viewportWidth))
+                    {
+                        return Move(1, 1);
+                    }
+                    break;
+                case ScrollingDirection.LEFT:
+                    if (CanMoveLeft())
+                    {
+                        return Move(-1, 0);
+                    }
+                    break;
+                case ScrollingDirection.RIGHT:
+                    if (CanMoveRight(scrollable.Width - viewportWidth))
+                    {
+                        return Move(1, 0);
+                    }
+                    break;
+            }
+            return this;
+        }
+
+        private bool CanMoveRight(int width)
+        {
+            return x < width;
+        }
+
+        private bool CanMoveLeft()
+        {
+            return x > 0;
+        }
+
+        private bool CanMoveDown(int height)
+        {
+            return y < height;
+        }
+
+        private bool CanMoveUp()
+        {
+            return y > 0;
+        }
+
+        private static ScrollingDirection GetScrollingDirection(int viewportWidth, int viewportHeight)
+        {
+            ScrollingDirection scrolling = ScrollingDirection.NONE;
+            MouseState state = Mouse.GetState();
+            if (state.X < SCROLL_BUFFER)
+            {
+                scrolling = ScrollingDirection.LEFT;
+            }
+            else if (state.X > viewportWidth - SCROLL_BUFFER)
+            {
+                scrolling = ScrollingDirection.RIGHT;
+            }
+            if (state.Y < SCROLL_BUFFER)
+            {
+                if (scrolling == ScrollingDirection.LEFT)
+                {
+                    return ScrollingDirection.UPLEFT;
+                }
+
+                if (scrolling == ScrollingDirection.RIGHT)
+                {
+                    return ScrollingDirection.UPRIGHT;
+                }
+
+                return ScrollingDirection.UP;                
+            }
+            else if (state.Y > viewportHeight - SCROLL_BUFFER)
+            {
+                if (scrolling == ScrollingDirection.LEFT)
+                {
+                    return ScrollingDirection.DOWNLEFT;
+                }
+
+                if (scrolling == ScrollingDirection.RIGHT)
+                {
+                    return ScrollingDirection.DOWNRIGHT;
+                }
+                
+                return ScrollingDirection.DOWN;              
+            }
+
+            return scrolling;
         }
 
         public int X { get { return x; } }
