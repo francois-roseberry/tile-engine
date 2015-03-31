@@ -14,15 +14,15 @@ namespace TileEngine
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class TileEngine : Microsoft.Xna.Framework.Game
+    public class Game : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager graphics;
 
-        public TileEngine()
+        public Game()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Components.Add(new MainScreen(this));
+            Components.Add(new TileEngineScreen(this));
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace TileEngine
         /// </summary>
         static void Main(string[] args)
         {
-            using (TileEngine game = new TileEngine())
+            using (Game game = new Game())
             {
                 game.Run();
             }

@@ -15,14 +15,14 @@ namespace TileEngine
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class MainScreen : Microsoft.Xna.Framework.DrawableGameComponent
+    public class TileEngineScreen : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
         private Map map;
         private Camera camera = Camera.Default();
         private MouseCursor cursor = new MouseCursor();
 
-        public MainScreen(Game game)
+        public TileEngineScreen(Game game)
             : base(game)
         {
             map = new Map(new DefaultMapRenderer());
