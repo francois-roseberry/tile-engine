@@ -27,7 +27,7 @@ namespace TileEngine
             {
                 for (int y = 0; y < NB_TILES_HEIGHT; y++)
                 {
-                    tiles.Add(new Tile(x, y));
+                    tiles.Add(new Tile(x, y, TileType.Grass));
                 }
             }
         }
