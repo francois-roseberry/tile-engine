@@ -5,11 +5,11 @@
 Features implemented :
 - Showing a viewport of map
 - Moving camera
+- Highlighting the tile currently hovered by mouse (Mouse picking)
 
 To be done next :
+- Adjust the zoom level of the camera
 - Changing the cursor to reflect the action
-- Mouse picking of tiles
-- Drawing different types of tiles
 - Adding a custom Pipeline deserializer to read a tile map
 - Putting two layers on tiles (base and top)
 - Reorientation of map's view (north, south, east, west)
