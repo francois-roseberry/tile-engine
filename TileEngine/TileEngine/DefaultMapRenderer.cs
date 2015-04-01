@@ -16,6 +16,7 @@ namespace TileEngine
         private const int ODD_ROW_X_OFFSET = 32;
 
         private Texture2D tileset;
+        private Texture2D highlight;
         private SpriteFont debugFont;
 
         public bool DrawDebugInfo { get; set; }
@@ -23,14 +24,15 @@ namespace TileEngine
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
+            highlight = content.Load<Texture2D>(@"highlight");
             debugFont = content.Load<SpriteFont>(@"debug");
         }
 
-        public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile coords)
+        public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile tile, bool highlighted)
         {
-            bool evenRow = coords.Y % 2 == 0;
-            int x = BASE_OFFSET_X - camera.X + coords.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
-            int y = BASE_OFFSET_Y - camera.Y + coords.Y * TILE_STEP_Y;
+            bool evenRow = tile.Y % 2 == 0;
+            int x = BASE_OFFSET_X - camera.X + tile.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
+            int y = BASE_OFFSET_Y - camera.Y + tile.Y * TILE_STEP_Y;
 
             spriteBatch.Draw(
                 tileset,
@@ -38,9 +40,18 @@ namespace TileEngine
                 new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT),
                 Color.White);
 
+            if (highlighted)
+            {
+                spriteBatch.Draw(
+                    highlight,
+                    new Vector2(x, y),
+                    new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT / 2),
+                    Color.White * 0.3f);
+            }
+
             if (DrawDebugInfo)
             {
-                DrawCoords(spriteBatch, coords, x, y);
+                DrawCoords(spriteBatch, tile, x, y);
             }
         }
 

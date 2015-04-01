@@ -21,6 +21,7 @@ namespace TileEngine
         private Map map;
         private Camera camera = Camera.Default();
         private MouseCursor cursor = new MouseCursor();
+        private MousePicker picker = new MousePicker();
 
         public TileEngineScreen(Game game)
             : base(game)
@@ -31,6 +32,7 @@ namespace TileEngine
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            picker.LoadContent(Game.Content);
             map.LoadContent(Game.Content);
             cursor.LoadContent(Game.Content);
         }
@@ -48,6 +50,7 @@ namespace TileEngine
             int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
             camera = camera.Update(viewportWidth, viewportHeight, map);
             cursor.Update();
+            picker.Update(camera);
 
             base.Update(gameTime);
         }
@@ -56,7 +59,7 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            map.Draw(camera, spriteBatch);
+            map.Draw(camera, spriteBatch, picker.HoveredTileCoordinates);
             cursor.Draw(spriteBatch);
 
             spriteBatch.End();

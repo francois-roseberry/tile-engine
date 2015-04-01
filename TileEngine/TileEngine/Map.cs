@@ -43,11 +43,16 @@ namespace TileEngine
             renderer.LoadContent(content);
         }
 
-        public void Draw(Camera camera, SpriteBatch spriteBatch)
+        public void Draw(Camera camera, SpriteBatch spriteBatch, Point hoveredTileCoordinates)
         {
             foreach (Tile tile in tiles)
             {
-                renderer.DrawTile(spriteBatch, camera, tile);             
+                bool highlighted = false;
+                if (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y)
+                {
+                    highlighted = true;
+                }
+                renderer.DrawTile(spriteBatch, camera, tile, highlighted);             
             }
         }
     }
