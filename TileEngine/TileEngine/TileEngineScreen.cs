@@ -20,7 +20,7 @@ namespace TileEngine
         private SpriteBatch spriteBatch;
         private MapRenderer renderer = new MapRenderer();
         private Map map;
-        private Camera camera = Camera.Default();
+        private Camera camera = Camera.Default(new DefaultMouseInput());
         private MouseCursor cursor = new MouseCursor();
         private MousePicker picker = new MousePicker();
 

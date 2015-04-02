@@ -3,31 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace TileEngine
 {
     public class Camera
     {
-        private const int SCROLL_BUFFER = 50;
-        private readonly int x;
-        private readonly int y;
-
-        public static Camera Default()
-        {
-            return new Camera(0, 0);
-        }
-
-        private Camera(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public Camera Move(int dx, int dy)
-        {
-            return new Camera(x + dx, y + dy);
-        }
-
         private enum ScrollingDirection
         {
             UPLEFT,
@@ -39,6 +20,31 @@ namespace TileEngine
             UPRIGHT,
             UP,
             NONE
+        }
+
+        private const int SCROLL_BUFFER = 50;
+        private readonly int x;
+        private readonly int y;
+        private readonly IMouseInput input;
+
+        public int X { get { return x; } }
+        public int Y { get { return y; } }
+
+        public static Camera Default(IMouseInput input)
+        {
+            return new Camera(0, 0, input);
+        }
+
+        private Camera(int x, int y, IMouseInput input)
+        {
+            this.x = x;
+            this.y = y;
+            this.input = input;
+        }
+
+        public Camera Move(int dx, int dy)
+        {
+            return new Camera(x + dx, y + dy, input);
         }
 
         public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
@@ -118,19 +124,19 @@ namespace TileEngine
             return y > 0;
         }
 
-        private static ScrollingDirection GetScrollingDirection(int viewportWidth, int viewportHeight)
+        private ScrollingDirection GetScrollingDirection(int viewportWidth, int viewportHeight)
         {
             ScrollingDirection scrolling = ScrollingDirection.NONE;
-            MouseState state = Mouse.GetState();
-            if (state.X < SCROLL_BUFFER)
+            Point position = input.Position;
+            if (position.X < SCROLL_BUFFER)
             {
                 scrolling = ScrollingDirection.LEFT;
             }
-            else if (state.X > viewportWidth - SCROLL_BUFFER)
+            else if (position.X > viewportWidth - SCROLL_BUFFER)
             {
                 scrolling = ScrollingDirection.RIGHT;
             }
-            if (state.Y < SCROLL_BUFFER)
+            if (position.Y < SCROLL_BUFFER)
             {
                 if (scrolling == ScrollingDirection.LEFT)
                 {
@@ -144,7 +150,7 @@ namespace TileEngine
 
                 return ScrollingDirection.UP;                
             }
-            else if (state.Y > viewportHeight - SCROLL_BUFFER)
+            else if (position.Y > viewportHeight - SCROLL_BUFFER)
             {
                 if (scrolling == ScrollingDirection.LEFT)
                 {
@@ -161,8 +167,5 @@ namespace TileEngine
 
             return scrolling;
         }
-
-        public int X { get { return x; } }
-        public int Y { get { return y; } }
     }
 }
