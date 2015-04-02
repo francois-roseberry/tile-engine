@@ -108,10 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="DefaultMapRenderer.cs" />
+    <Compile Include="MapRenderer.cs" />
     <Compile Include="IScrollable.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="IMapRenderer.cs" />
     <Compile Include="MouseCursor.cs" />
     <Compile Include="MousePicker.cs" />
     <Compile Include="Tile.cs" />

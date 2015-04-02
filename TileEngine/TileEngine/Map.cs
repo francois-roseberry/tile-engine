@@ -17,12 +17,9 @@ namespace TileEngine
         private const int NB_TILES_HEIGHT = 50;
 
         private List<Tile> tiles = new List<Tile>();
-        private readonly IMapRenderer renderer;    
 
-        public Map(IMapRenderer renderer)
+        public Map()
         {
-            this.renderer = renderer;
-
             for (int x = 0; x < NB_TILES_WIDTH; x++)
             {
                 for (int y = 0; y < NB_TILES_HEIGHT; y++)
@@ -36,24 +33,6 @@ namespace TileEngine
 
         public int Height { get { return (NB_TILES_HEIGHT - 1) * TILE_HEIGHT/4; } }
 
-        public IMapRenderer Renderer { get { return renderer; } }
-
-        public void LoadContent(ContentManager content)
-        {
-            renderer.LoadContent(content);
-        }
-
-        public void Draw(Camera camera, SpriteBatch spriteBatch, Point hoveredTileCoordinates)
-        {
-            foreach (Tile tile in tiles)
-            {
-                bool highlighted = false;
-                if (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y)
-                {
-                    highlighted = true;
-                }
-                renderer.DrawTile(spriteBatch, camera, tile, highlighted);             
-            }
-        }
+        public List<Tile> Tiles { get { return tiles; } }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace TileEngine
 {
-    class DefaultMapRenderer : IMapRenderer
+    class MapRenderer
     {
         private const int BASE_OFFSET_X = -1 * Map.TILE_WIDTH / 2;
         private const int BASE_OFFSET_Y = -3 * Map.TILE_HEIGHT / 4;
@@ -28,7 +28,16 @@ namespace TileEngine
             debugFont = content.Load<SpriteFont>(@"debug");
         }
 
-        public void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile tile, bool highlighted)
+        public void DrawTileMap(SpriteBatch spriteBatch, Camera camera, Map map, Point hoveredTileCoordinates)
+        {
+            foreach (Tile tile in map.Tiles)
+            {
+                bool highlighted = (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);
+                DrawTile(spriteBatch, camera, tile, highlighted);
+            }
+        }
+
+        private void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile tile, bool highlighted)
         {
             bool evenRow = tile.Y % 2 == 0;
             int x = BASE_OFFSET_X - camera.X + tile.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
