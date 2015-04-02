@@ -127,8 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TileEngineContent\TileEngineContent.contentproj">
-      <Name>TileEngineContent</Name>
+      <Name>TileEngineContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,20 +3,56 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine", "TileEngine\TileEngine\TileEngine.csproj", "{1D2D663D-E788-4C94-979F-DEEABA2BD269}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TileEngineContent", "TileEngine\TileEngineContent\TileEngineContent.contentproj", "{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngineContent", "TileEngine\TileEngineContent\TileEngineContent.contentproj", "{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1FB3ED16-7154-4EC7-9629-63EF387E3B82}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TileEngine.vsmdi = TileEngine.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TileEngine.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Debug|x86.ActiveCfg = Debug|x86
 		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Debug|x86.Build.0 = Debug|x86
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Release|Any CPU.ActiveCfg = Release|x86
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Release|x86.ActiveCfg = Release|x86
 		{1D2D663D-E788-4C94-979F-DEEABA2BD269}.Release|x86.Build.0 = Release|x86
+		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Debug|x86.ActiveCfg = Debug|x86
+		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Release|Any CPU.ActiveCfg = Release|x86
+		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}.Release|x86.ActiveCfg = Release|x86
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
