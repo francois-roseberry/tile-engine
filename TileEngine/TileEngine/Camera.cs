@@ -42,11 +42,6 @@ namespace TileEngine
             this.input = input;
         }
 
-        public Camera Move(int dx, int dy)
-        {
-            return new Camera(x + dx, y + dy, input);
-        }
-
         public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
         {
             ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);
@@ -102,6 +97,11 @@ namespace TileEngine
                     break;
             }
             return this;
+        }
+
+        private Camera Move(int dx, int dy)
+        {
+            return new Camera(x + dx, y + dy, input);
         }
 
         private bool CanMoveRight(int width)
