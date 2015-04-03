@@ -13,5 +13,6 @@ To be done next :
 - Adding a custom Pipeline deserializer to read a tile map
 - Putting two layers on tiles (base and top)
 - Reorientation of map's view (north, south, east, west)
+- Putting it inside a UI
 
 Eventually, may serve as a basis for a remake of a classic city builder game like Pharaoh
