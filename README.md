@@ -1,6 +1,8 @@
 # tile-engine
 
 2D Tile engine in XNA
+Free and open-source 2D isometric tile-engine in XNA
+Under development as of 04-03-2015, any help is welcome !
 
 Features implemented :
 - Showing a viewport of map
