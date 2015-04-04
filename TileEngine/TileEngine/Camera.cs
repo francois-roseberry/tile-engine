@@ -45,6 +45,7 @@ namespace TileEngine
         public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
         {
             ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);
+            Console.WriteLine(scrolling);
             switch (scrolling)
             {
                 case ScrollingDirection.UPLEFT:
