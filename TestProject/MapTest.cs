@@ -32,7 +32,7 @@ namespace TestProject
             }
         }
 
-        [TestInitialize()]
+        [TestInitialize]
         public void Setup() {
             map = new Map();
         }
