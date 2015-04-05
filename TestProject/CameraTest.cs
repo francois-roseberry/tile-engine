@@ -47,6 +47,7 @@ namespace TestProject
         {
             Assert.AreEqual(0, camera.X);
             Assert.AreEqual(0, camera.Y);
+            Assert.AreEqual(1, camera.Zoom);
         }
 
         [TestMethod]
@@ -268,9 +269,67 @@ namespace TestProject
             Assert.AreEqual(camera.Y + screenCoordinates.Y, worldCoordinates.Y);
         }
 
+        [TestMethod]
+        public void WhenMouseIsScrolledForwardThenShouldZoomIn()
+        {
+            input.Scrolling = MouseScrolling.FORWARD;
+
+            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+
+            Assert.AreEqual(camera.Zoom + 1, newCamera.Zoom);
+        }
+
+        [TestMethod]
+        public void CannotZoomInCloserThan3()
+        {
+            input.Scrolling = MouseScrolling.FORWARD;
+
+            Camera newCamera = camera
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+
+            Assert.AreEqual(3, newCamera.Zoom);
+        }
+
+        [TestMethod]
+        public void WhenMouseIsScrolledBackwardThenShouldZoomOut()
+        {
+            camera = camera.SetZoom(2);
+            input.Scrolling = MouseScrolling.BACKWARD;
+
+            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+
+            Assert.AreEqual(camera.Zoom - 1, newCamera.Zoom);
+        }
+
+        [TestMethod]
+        public void CannotZoomOutFartherThanOne()
+        {
+            input.Scrolling = MouseScrolling.BACKWARD;
+
+            Camera newCamera = camera
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
+                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+
+            Assert.AreEqual(camera.Zoom, newCamera.Zoom);
+        }
+
+        [TestMethod]
+        public void WhenMouseIsNotScrolledThenShouldNotAffectZoom()
+        {
+            input.Scrolling = MouseScrolling.NONE;
+
+            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+
+            Assert.AreEqual(camera.Zoom, newCamera.Zoom);
+        }
+
         private class FakeMouseInput : IMouseInput
         {
             public Point Position { get; set; }
+            public MouseScrolling Scrolling { get; set; }
         }
 
         private class FakeScrollable : IScrollable

@@ -9,6 +9,8 @@ namespace TileEngine
 {
     class DefaultMouseInput : IMouseInput
     {
+        private int previousScrollValue = 0;
+
         public Point Position 
         { 
             get 
@@ -16,6 +18,27 @@ namespace TileEngine
                 MouseState state = Mouse.GetState();
                 return new Point(state.X, state.Y);
             } 
+        }
+
+        public MouseScrolling Scrolling
+        {
+            get
+            {
+                MouseState state = Mouse.GetState();
+                int delta = state.ScrollWheelValue - previousScrollValue;
+                previousScrollValue = state.ScrollWheelValue;
+                if (delta > 0)
+                {
+                    return MouseScrolling.FORWARD;
+                }
+
+                if (delta > 0)
+                {
+                    return MouseScrolling.BACKWARD;
+                }
+
+                return MouseScrolling.NONE;
+            }
         }
     }
 }

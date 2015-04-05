@@ -6,8 +6,16 @@ using Microsoft.Xna.Framework;
 
 namespace TileEngine
 {
+    public enum MouseScrolling
+    {
+        NONE,
+        FORWARD,
+        BACKWARD
+    }
+
     public interface IMouseInput
     {
         Point Position { get; }
+        MouseScrolling Scrolling { get; }
     }
 }

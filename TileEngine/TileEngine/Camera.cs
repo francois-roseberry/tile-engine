@@ -25,26 +25,35 @@ namespace TileEngine
         private const int SCROLL_BUFFER = 50;
         private readonly int x;
         private readonly int y;
+        private readonly int zoom;
         private readonly IMouseInput input;
 
         public int X { get { return x; } }
         public int Y { get { return y; } }
+        public int Zoom { get { return zoom; } }
 
         public static Camera Default(IMouseInput input)
         {
-            return new Camera(0, 0, input);
+            return new Camera(0, 0, 1, input);
         }
 
-        private Camera(int x, int y, IMouseInput input)
+        private Camera(int x, int y, int zoom, IMouseInput input)
         {
             this.x = x;
             this.y = y;
+            this.zoom = zoom;
             this.input = input;
         }
 
         public Camera SetPosition(int x, int y)
         {
-            return new Camera(x, y, input);
+            return new Camera(x, y, zoom, input);
+        }
+
+        public Camera SetZoom(int zoom)
+        {
+            int newZoom = Math.Max(Math.Min(zoom, 3), 1);
+            return new Camera(x, y, zoom, input);
         }
 
         public Point ScreenToWorld(Point screenCoordinates)
@@ -54,64 +63,81 @@ namespace TileEngine
 
         public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
         {
+            MouseScrolling mouseScrolling = input.Scrolling;
+            int dz = 0;
+            if (mouseScrolling == MouseScrolling.FORWARD)
+            {
+                dz = 1;
+            }
+            else if (mouseScrolling == MouseScrolling.BACKWARD)
+            {
+                dz = -1;
+            }
+            int dx = 0;
+            int dy = 0;
             ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);
             switch (scrolling)
             {
                 case ScrollingDirection.UPLEFT:
                     if (CanMoveUp() && CanMoveLeft())
                     {
-                        return Move(-1, -1);
+                        dx = -1;
+                        dy = -1;
                     }
                     break;
                 case ScrollingDirection.UP:
                     if (CanMoveUp())
                     {
-                        return Move(0, -1);
+                        dy = -1;
                     }
                     break;
                 case ScrollingDirection.UPRIGHT:
                     if (CanMoveUp() && CanMoveRight(scrollable.Height - viewportHeight))
                     {
-                        return Move(1, -1);
+                        dx = 1;
+                        dy = -1;
                     }
                     break;
                 case ScrollingDirection.DOWNLEFT:
                     if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveLeft())
                     {
-                        return Move(-1, 1);
+                        dx = -1;
+                        dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWN:
                     if (CanMoveDown(scrollable.Height - viewportHeight))
                     {
-                        return Move(0, 1);
+                        dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWNRIGHT:
                     if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveRight(scrollable.Width - viewportWidth))
                     {
-                        return Move(1, 1);
+                        dx = 1;
+                        dy = 1;
                     }
                     break;
                 case ScrollingDirection.LEFT:
                     if (CanMoveLeft())
                     {
-                        return Move(-1, 0);
+                        dx = -1;
                     }
                     break;
                 case ScrollingDirection.RIGHT:
                     if (CanMoveRight(scrollable.Width - viewportWidth))
                     {
-                        return Move(1, 0);
+                        dx = 1;
                     }
                     break;
             }
-            return this;
+            return Move(dx, dy, dz);
         }
 
-        private Camera Move(int dx, int dy)
+        private Camera Move(int dx, int dy, int dz)
         {
-            return new Camera(x + dx, y + dy, input);
+            int newZoom = Math.Max(Math.Min(zoom + dz, 3), 1);
+            return new Camera(x + dx, y + dy, newZoom, input);
         }
 
         private bool CanMoveRight(int width)
