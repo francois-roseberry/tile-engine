@@ -47,6 +47,11 @@ namespace TileEngine
             return new Camera(x, y, input);
         }
 
+        public Point ScreenToWorld(Point screenCoordinates)
+        {
+            return new Point(screenCoordinates.X + x, screenCoordinates.Y + y);
+        }
+
         public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
         {
             ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);

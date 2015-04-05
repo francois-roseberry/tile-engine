@@ -24,13 +24,13 @@ namespace TileEngine
         public void Update(Camera camera)
         {
             MouseState state = Mouse.GetState();
-            hoveredTileCoordinates = ScreenToTile(new Point(state.X, state.Y), camera);
+            Point screenCoordinates = new Point(state.X, state.Y);
+            Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
+            hoveredTileCoordinates = ScreenToTile(worldCoordinates);
         }
 
-        private Point ScreenToTile(Point screenCoordinates, Camera camera)
+        private Point ScreenToTile(Point worldCoordinates)
         {
-            Point worldCoordinates = ScreenToWorld(screenCoordinates, camera);
-
             Point squareCoordinates = new Point(
                (int)(worldCoordinates.X / mouseMap.Width),
                ((int)(worldCoordinates.Y / mouseMap.Height)) * 2);
@@ -74,11 +74,6 @@ namespace TileEngine
             squareCoordinates.Y += dy + 3;
 
             return squareCoordinates;
-        }
-
-        private Point ScreenToWorld(Point screenCoordinates, Camera camera)
-        {
-            return new Point(screenCoordinates.X + camera.X, screenCoordinates.Y + camera.Y);
         }
     }
 }

@@ -257,6 +257,17 @@ namespace TestProject
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll up because map is already at top");
         }
 
+        [TestMethod]
+        public void WhenConvertingScreenToWorldCoordinatesShouldAddCameraCoordinates()
+        {
+            camera = camera.SetPosition(20, 30);
+            Point screenCoordinates = new Point(2, 3);
+            Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
+
+            Assert.AreEqual(camera.X + screenCoordinates.X, worldCoordinates.X);
+            Assert.AreEqual(camera.Y + screenCoordinates.Y, worldCoordinates.Y);
+        }
+
         private class FakeMouseInput : IMouseInput
         {
             public Point Position { get; set; }
