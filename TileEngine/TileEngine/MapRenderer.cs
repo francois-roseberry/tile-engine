@@ -30,6 +30,10 @@ namespace TileEngine
 
         public void DrawTileMap(SpriteBatch spriteBatch, Camera camera, Map map, Point hoveredTileCoordinates)
         {
+            Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
+            Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
+            Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
+
             foreach (Tile tile in map.Tiles)
             {
                 bool highlighted = (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);

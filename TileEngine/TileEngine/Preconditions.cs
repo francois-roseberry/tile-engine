@@ -14,5 +14,14 @@ namespace TileEngine
                 throw new ArgumentException(message);
             }
         }
+
+        public static T CheckNotNull<T>(T obj, string message)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentNullException(message);
+            }
+            return obj;
+        }
     }
 }

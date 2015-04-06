@@ -23,13 +23,15 @@ namespace TileEngine
 
         public void Update(Camera camera)
         {
+            Preconditions.CheckNotNull(camera, "MousePicker needs a camera to be updated");
+
             MouseState state = Mouse.GetState();
             Point screenCoordinates = new Point(state.X, state.Y);
             Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
-            hoveredTileCoordinates = ScreenToTile(worldCoordinates);
+            hoveredTileCoordinates = WorldToTile(worldCoordinates);
         }
 
-        private Point ScreenToTile(Point worldCoordinates)
+        private Point WorldToTile(Point worldCoordinates)
         {
             Point squareCoordinates = new Point(
                (int)(worldCoordinates.X / mouseMap.Width),

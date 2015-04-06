@@ -34,6 +34,8 @@ namespace TileEngine
 
         public static Camera Default(IMouseInput input)
         {
+            Preconditions.CheckNotNull(input, "Camera needs an input");
+
             return new Camera(0, 0, 1, input);
         }
 
@@ -55,11 +57,14 @@ namespace TileEngine
 
         public Point ScreenToWorld(Point screenCoordinates)
         {
-            return new Point((screenCoordinates.X + x)/zoom, (screenCoordinates.Y + y)/zoom);
+            return new Point((screenCoordinates.X + x) / zoom, (screenCoordinates.Y + y) / zoom);
         }
 
         public Camera Update(Size viewport, IScrollable scrollable)
         {
+            Preconditions.CheckNotNull(viewport, "Camera needs a viewport to be updated");
+            Preconditions.CheckNotNull(scrollable, "Camera needs an IScrollable to be updated");
+
             MouseScrolling mouseScrolling = input.Scrolling;
             int dz = 0;
             if (mouseScrolling == MouseScrolling.FORWARD)
