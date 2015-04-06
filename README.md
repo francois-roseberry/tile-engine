@@ -7,10 +7,10 @@ Features implemented :
 - Showing a viewport of map
 - Moving camera
 - Highlighting the tile currently hovered by mouse (Mouse picking)
+- Two level of zoom (normal and zoomed-in)
 
 To be done next :
-- Adjust the zoom level of the camera
-- - Putting it inside a UI
+- Putting it inside a UI
 - Drawing objects larger than 1 tile
 - Reorientation of map's view (north, south, east, west)
 - Changing the cursor to reflect the action
@@ -19,3 +19,4 @@ To be done next :
 
 
 Eventually, may serve as a basis for a remake of a classic city builder game like Pharaoh
+or pathfinding sample, where character follows where mouse click, like Diablo
