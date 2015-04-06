@@ -40,12 +40,12 @@ namespace TileEngine
         private void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile tile, bool highlighted)
         {
             bool evenRow = tile.Y % 2 == 0;
-            int x = BASE_OFFSET_X - camera.X + tile.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
-            int y = BASE_OFFSET_Y - camera.Y + tile.Y * TILE_STEP_Y;
+            int x = BASE_OFFSET_X * camera.Zoom - camera.X + tile.X * Map.TILE_WIDTH * camera.Zoom + (evenRow ? 0 : ODD_ROW_X_OFFSET*camera.Zoom);
+            int y = BASE_OFFSET_Y * camera.Zoom - camera.Y + tile.Y * TILE_STEP_Y * camera.Zoom;
 
             spriteBatch.Draw(
                 tileset,
-                new Rectangle(x, y, Map.TILE_WIDTH, Map.TILE_HEIGHT),
+                new Rectangle(x, y, Map.TILE_WIDTH * camera.Zoom, Map.TILE_HEIGHT * camera.Zoom),
                 new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT),
                 Color.White);
 
@@ -53,22 +53,24 @@ namespace TileEngine
             {
                 spriteBatch.Draw(
                     highlight,
-                    new Vector2(x, y),
+                    new Rectangle(x, y, Map.TILE_WIDTH * camera.Zoom, Map.TILE_HEIGHT / 2 * camera.Zoom),
                     new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT / 2),
                     Color.White * 0.3f);
             }
 
             if (DrawDebugInfo)
             {
-                DrawCoords(spriteBatch, tile, x, y);
+                DrawCoords(spriteBatch, camera, tile, x, y);
             }
         }
 
-        private void DrawCoords(SpriteBatch spriteBatch, Tile coords, int x, int y)
+        private void DrawCoords(SpriteBatch spriteBatch, Camera camera, Tile coords, int x, int y)
         {
             string message = String.Format("({0},{1})", coords.X, coords.Y);
-            Vector2 position = new Vector2(x + 20, y + 40);
-            spriteBatch.DrawString(debugFont, message, position, Color.White);
+            int textX = 20 * camera.Zoom;
+            int textY = 40 * camera.Zoom;
+            Vector2 position = new Vector2(x + textX, y + textY);
+            spriteBatch.DrawString(debugFont, message, position, Color.White, 0, new Vector2(0, 0), camera.Zoom, SpriteEffects.None, 1);
         }
     }
 }

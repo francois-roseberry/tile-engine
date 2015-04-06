@@ -55,7 +55,7 @@ namespace TileEngine
 
         public Point ScreenToWorld(Point screenCoordinates)
         {
-            return new Point(screenCoordinates.X + x, screenCoordinates.Y + y);
+            return new Point((screenCoordinates.X + x)/zoom, (screenCoordinates.Y + y)/zoom);
         }
 
         public Camera Update(Size viewport, IScrollable scrollable)

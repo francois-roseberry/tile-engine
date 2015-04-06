@@ -258,14 +258,14 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void WhenConvertingScreenToWorldCoordinatesShouldAddCameraCoordinates()
+        public void WhenConvertingScreenToWorldCoordinatesShouldAddCameraCoordinatesAndAccountForZoom()
         {
-            camera = camera.SetPosition(20, 30);
+            camera = ZoomIn(camera.SetPosition(20, 30));
             Point screenCoordinates = new Point(2, 3);
             Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
 
-            Assert.AreEqual(camera.X + screenCoordinates.X, worldCoordinates.X);
-            Assert.AreEqual(camera.Y + screenCoordinates.Y, worldCoordinates.Y);
+            Assert.AreEqual((camera.X + screenCoordinates.X) / camera.Zoom, worldCoordinates.X);
+            Assert.AreEqual((camera.Y + screenCoordinates.Y) / camera.Zoom, worldCoordinates.Y);
         }
 
         [TestMethod]

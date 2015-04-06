@@ -32,7 +32,7 @@ namespace TileEngine
                     return MouseScrolling.FORWARD;
                 }
 
-                if (delta > 0)
+                if (delta < 0)
                 {
                     return MouseScrolling.BACKWARD;
                 }
