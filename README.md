@@ -8,6 +8,7 @@ Features implemented :
 - Moving camera
 - Highlighting the tile currently hovered by mouse (Mouse picking)
 - Two level of zoom (normal and zoomed-in)
+- Culling
 
 To be done next :
 - Putting it inside a UI
