@@ -13,8 +13,8 @@ namespace TileEngine
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
 
-        public const int NB_TILES_PER_ROW = 20;
-        public const int NB_TILES_PER_COLUMN = 50;
+        public const int NB_TILES_PER_ROW = 200;
+        public const int NB_TILES_PER_COLUMN = 500;
 
         private List<Tile> tiles = new List<Tile>();
 

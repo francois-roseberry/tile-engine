@@ -47,10 +47,7 @@ namespace TileEngine
             KeyboardState state = Keyboard.GetState();
             renderer.DrawDebugInfo = state.IsKeyDown(Keys.D);
 
-            int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
-            int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-            Size viewport = new Size(viewportWidth, viewportHeight);
-            camera = camera.Update(viewport, map);
+            camera = camera.Update(Viewport, map);
             cursor.Update();
             picker.Update(camera);
 
@@ -61,12 +58,22 @@ namespace TileEngine
         {
             spriteBatch.Begin();
 
-            renderer.DrawTileMap(spriteBatch, camera, map, picker.HoveredTileCoordinates);
+            renderer.DrawTileMap(spriteBatch, camera, Viewport, map, picker.HoveredTileCoordinates);
             cursor.Draw(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private Size Viewport
+        {
+            get
+            {
+                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+                int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+                return new Size(viewportWidth, viewportHeight);
+            }
         }
     }
 }

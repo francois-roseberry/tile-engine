@@ -28,28 +28,38 @@ namespace TileEngine
             debugFont = content.Load<SpriteFont>(@"debug");
         }
 
-        public void DrawTileMap(SpriteBatch spriteBatch, Camera camera, Map map, Point hoveredTileCoordinates)
+        public void DrawTileMap(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Map map, Point hoveredTileCoordinates)
         {
             Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
             Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
 
+            Rectangle viewport = new Rectangle(0, 0, viewportSize.Width, viewportSize.Height);
+            Console.WriteLine(viewport);
+
             foreach (Tile tile in map.Tiles)
-            {
+            {               
                 bool highlighted = (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);
-                DrawTile(spriteBatch, camera, tile, highlighted);
+                DrawTile(spriteBatch, camera, viewport, tile, highlighted);
             }
         }
 
-        private void DrawTile(SpriteBatch spriteBatch, Camera camera, Tile tile, bool highlighted)
+        private void DrawTile(SpriteBatch spriteBatch, Camera camera, Rectangle viewport, Tile tile, bool highlighted)
         {
             bool evenRow = tile.Y % 2 == 0;
-            int x = BASE_OFFSET_X * camera.Zoom - camera.X + tile.X * Map.TILE_WIDTH * camera.Zoom + (evenRow ? 0 : ODD_ROW_X_OFFSET*camera.Zoom);
+            int x = BASE_OFFSET_X * camera.Zoom - camera.X + tile.X * Map.TILE_WIDTH * camera.Zoom + (evenRow ? 0 : ODD_ROW_X_OFFSET * camera.Zoom);
             int y = BASE_OFFSET_Y * camera.Zoom - camera.Y + tile.Y * TILE_STEP_Y * camera.Zoom;
+
+            Rectangle destination = new Rectangle(x, y, Map.TILE_WIDTH * camera.Zoom, Map.TILE_HEIGHT * camera.Zoom);
+
+            if (!viewport.Intersects(destination))
+            {
+                return;
+            }
 
             spriteBatch.Draw(
                 tileset,
-                new Rectangle(x, y, Map.TILE_WIDTH * camera.Zoom, Map.TILE_HEIGHT * camera.Zoom),
+                destination,
                 new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT),
                 Color.White);
 
