@@ -47,12 +47,9 @@ namespace TileEngine
 
         public Camera SetPosition(int x, int y)
         {
-            return new Camera(x, y, zoom, input);
-        }
+            Preconditions.CheckArgument(x >= 0, "x must be >= 0");
+            Preconditions.CheckArgument(y >= 0, "y must be >= 0");
 
-        public Camera SetZoom(int zoom)
-        {
-            int newZoom = Math.Max(Math.Min(zoom, 3), 1);
             return new Camera(x, y, zoom, input);
         }
 
@@ -61,7 +58,7 @@ namespace TileEngine
             return new Point(screenCoordinates.X + x, screenCoordinates.Y + y);
         }
 
-        public Camera Update(int viewportWidth, int viewportHeight, IScrollable scrollable)
+        public Camera Update(Size viewport, IScrollable scrollable)
         {
             MouseScrolling mouseScrolling = input.Scrolling;
             int dz = 0;
@@ -75,7 +72,7 @@ namespace TileEngine
             }
             int dx = 0;
             int dy = 0;
-            ScrollingDirection scrolling = GetScrollingDirection(viewportWidth, viewportHeight);
+            ScrollingDirection scrolling = GetScrollingDirection(viewport.Width, viewport.Height);
             switch (scrolling)
             {
                 case ScrollingDirection.UPLEFT:
@@ -92,27 +89,27 @@ namespace TileEngine
                     }
                     break;
                 case ScrollingDirection.UPRIGHT:
-                    if (CanMoveUp() && CanMoveRight(scrollable.Height - viewportHeight))
+                    if (CanMoveUp() && CanMoveRight(scrollable.Height - viewport.Height))
                     {
                         dx = 1;
                         dy = -1;
                     }
                     break;
                 case ScrollingDirection.DOWNLEFT:
-                    if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveLeft())
+                    if (CanMoveDown(scrollable.Height - viewport.Height) && CanMoveLeft())
                     {
                         dx = -1;
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWN:
-                    if (CanMoveDown(scrollable.Height - viewportHeight))
+                    if (CanMoveDown(scrollable.Height - viewport.Height))
                     {
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWNRIGHT:
-                    if (CanMoveDown(scrollable.Height - viewportHeight) && CanMoveRight(scrollable.Width - viewportWidth))
+                    if (CanMoveDown(scrollable.Height - viewport.Height) && CanMoveRight(scrollable.Width - viewport.Width))
                     {
                         dx = 1;
                         dy = 1;
@@ -125,19 +122,31 @@ namespace TileEngine
                     }
                     break;
                 case ScrollingDirection.RIGHT:
-                    if (CanMoveRight(scrollable.Width - viewportWidth))
+                    if (CanMoveRight(scrollable.Width - viewport.Width))
                     {
                         dx = 1;
                     }
                     break;
             }
-            return Move(dx, dy, dz);
+            return Move(dx, dy, dz, viewport);
         }
 
-        private Camera Move(int dx, int dy, int dz)
+        private Camera Move(int dx, int dy, int dz, Size viewport)
         {
-            int newZoom = Math.Max(Math.Min(zoom + dz, 3), 1);
-            return new Camera(x + dx, y + dy, newZoom, input);
+            int newZoom = Math.Max(Math.Min(zoom + dz, 2), 1);
+            int newX = x + dx;    
+            int newY = y + dy;
+            if (newZoom - zoom > 0) // We've zoomed in
+            {
+                newX += viewport.Width / 4;
+                newY += viewport.Height / 4;
+            }
+            else if (newZoom - zoom < 0) /// We've zoomed out
+            {
+                newX = Math.Max(newX - viewport.Width / 4, 0);
+                newY = Math.Max(newY - viewport.Height / 4, 0);
+            }
+            return new Camera(newX, newY, newZoom, input);
         }
 
         private bool CanMoveRight(int width)

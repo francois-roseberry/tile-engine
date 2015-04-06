@@ -8,8 +8,7 @@ namespace TestProject
     [TestClass]
     public class CameraTest
     {
-        private const int VIEWPORT_WIDTH = 200;
-        private const int VIEWPORT_HEIGHT = 200;
+        private static readonly Size VIEWPORT = new Size(200, 200);
 
         private TestContext testContextInstance;
         private FakeMouseInput input;
@@ -37,8 +36,8 @@ namespace TestProject
         {
             input = new FakeMouseInput();
             scrollable = new FakeScrollable();
-            scrollable.Width = VIEWPORT_WIDTH * 5;
-            scrollable.Height = VIEWPORT_HEIGHT * 5;
+            scrollable.Width = VIEWPORT.Width * 5;
+            scrollable.Height = VIEWPORT.Height * 5;
             camera = Camera.Default(input);
         }
 
@@ -53,13 +52,13 @@ namespace TestProject
         [TestMethod]
         public void WhenMouseIsInTheMiddleShouldNotScroll()
         {
-            for (int x = 50; x < VIEWPORT_WIDTH - 50; x++)
+            for (int x = 50; x < VIEWPORT.Width - 50; x++)
             {
-                for (int y = 50; y < VIEWPORT_HEIGHT - 50; y++)
+                for (int y = 50; y < VIEWPORT.Height - 50; y++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera movedCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera movedCamera = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X, movedCamera.X, "Should not scroll left or right");
                     Assert.AreEqual(camera.Y, movedCamera.Y, "Should not scroll down or up");
@@ -70,21 +69,21 @@ namespace TestProject
         [TestMethod] 
         public void WhenMouseIsInRightZoneAndCanScrollRightThenShouldScroll()
         {
-            for (int y = 50; y <= VIEWPORT_HEIGHT - 50; y++)
+            for (int y = 50; y <= VIEWPORT.Height - 50; y++)
             {
-                for (int x = VIEWPORT_WIDTH - 50 + 1; x < VIEWPORT_WIDTH; x++)
+                for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera movedCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera movedCamera = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X + 1, movedCamera.X, "Should scroll right");
                     Assert.AreEqual(camera.Y, movedCamera.Y, "Should not scroll down or up");
                 }
             }
 
-            scrollable.Width = VIEWPORT_WIDTH;
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            scrollable.Width = VIEWPORT.Width;
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll right because map is at maximum right");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll down or up");
@@ -94,13 +93,13 @@ namespace TestProject
         public void WhenMouseIsInLeftZoneThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int y = 50; y <= VIEWPORT_HEIGHT - 50; y++)
+            for (int y = 50; y <= VIEWPORT.Height - 50; y++)
             {
                 for (int x = 0; x < 50; x++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X - 1, moved.X, "Should scroll left");
                     Assert.AreEqual(camera.Y, moved.Y, "Should not scroll up or down");
@@ -108,7 +107,7 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll left because map is already at maximum left");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll down or up");
@@ -118,13 +117,13 @@ namespace TestProject
         public void WhenMouseIsInTopZoneThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = 50; x <= VIEWPORT_WIDTH - 50; x++)
+            for (int x = 50; x <= VIEWPORT.Width - 50; x++)
             {
                 for (int y = 0; y < 50; y++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X, moved.X, "Should not scroll left or right");
                     Assert.AreEqual(camera.Y - 1, moved.Y, "Should scroll up");
@@ -132,7 +131,7 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll left or right");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll or up because map is already at top");
@@ -141,21 +140,21 @@ namespace TestProject
         [TestMethod]
         public void WhenMouseIsInBottomZoneThenShouldScroll()
         {
-            for (int x = 50; x <= VIEWPORT_WIDTH - 50; x++)
+            for (int x = 50; x <= VIEWPORT.Width - 50; x++)
             {
-                for (int y = VIEWPORT_HEIGHT - 50 + 1; y < VIEWPORT_HEIGHT; y++)
+                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X, moved.X, "Should not scroll left or right");
                     Assert.AreEqual(camera.Y + 1, moved.Y, "Should scroll down");
                 }
             }
 
-            scrollable.Height = VIEWPORT_HEIGHT;
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            scrollable.Height = VIEWPORT.Height;
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll left or right");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll down because map is already at bottom");
@@ -171,7 +170,7 @@ namespace TestProject
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X - 1, moved.X, "Should scroll left");
                     Assert.AreEqual(camera.Y - 1, moved.Y, "Should scroll up");
@@ -179,7 +178,7 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll left because map is already at maximum left");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll up because map is already at top");
@@ -189,13 +188,13 @@ namespace TestProject
         public void WhenMouseIsInTopRightCornerThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = VIEWPORT_WIDTH - 50 + 1; x < VIEWPORT_WIDTH; x++)
+            for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
             {
                 for (int y = 0; y < 50; y++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X + 1, moved.X, "Should scroll right");
                     Assert.AreEqual(camera.Y - 1, moved.Y, "Should scroll up");
@@ -203,7 +202,7 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll right because map is already at maximum right");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll up because map is already at top");
@@ -215,11 +214,11 @@ namespace TestProject
             camera = camera.SetPosition(20, 20);
             for (int x = 0; x < 50; x++)
             {
-                for (int y = VIEWPORT_HEIGHT - 50 + 1; y < VIEWPORT_HEIGHT; y++)
+                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
                 {
                     input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X - 1, moved.X, "Should scroll left");
                     Assert.AreEqual(camera.Y + 1, moved.Y, "Should scroll down");
@@ -227,8 +226,8 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            scrollable.Height = VIEWPORT_HEIGHT;
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            scrollable.Height = VIEWPORT.Height;
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll left because map is already at maximum left");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll down because map is already at bottom");
@@ -237,13 +236,13 @@ namespace TestProject
         [TestMethod]
         public void WhenMouseIsInBottomRightCornerThenShouldScroll()
         {
-            for (int x = VIEWPORT_WIDTH - 50 + 1; x < VIEWPORT_WIDTH; x++)
+            for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
             {
-                for (int y = VIEWPORT_HEIGHT - 50 + 1; y < VIEWPORT_HEIGHT; y++)
+                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
                 {
-                    input.Position = new Point(x, VIEWPORT_HEIGHT - 40);
+                    input.Position = new Point(x, y);
 
-                    Camera moved = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                    Camera moved = camera.Update(VIEWPORT, scrollable);
 
                     Assert.AreEqual(camera.X + 1, moved.X, "Should scroll right");
                     Assert.AreEqual(camera.Y + 1, moved.Y, "Should scroll up");
@@ -251,8 +250,8 @@ namespace TestProject
             }
 
             camera = camera.SetPosition(0, 0);
-            scrollable.Width = VIEWPORT_WIDTH;
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            scrollable.Width = VIEWPORT.Width;
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.X, newCamera.X, "Should not scroll right because map is already at maximum right");
             Assert.AreEqual(camera.Y, newCamera.Y, "Should not scroll up because map is already at top");
@@ -274,32 +273,32 @@ namespace TestProject
         {
             input.Scrolling = MouseScrolling.FORWARD;
 
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.Zoom + 1, newCamera.Zoom);
         }
 
         [TestMethod]
-        public void CannotZoomInCloserThan3()
+        public void CannotZoomInCloserThan2()
         {
             input.Scrolling = MouseScrolling.FORWARD;
 
             Camera newCamera = camera
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                .Update(VIEWPORT, scrollable)
+                .Update(VIEWPORT, scrollable)
+                .Update(VIEWPORT, scrollable)
+                .Update(VIEWPORT, scrollable);
 
-            Assert.AreEqual(3, newCamera.Zoom);
+            Assert.AreEqual(2, newCamera.Zoom);
         }
 
         [TestMethod]
         public void WhenMouseIsScrolledBackwardThenShouldZoomOut()
         {
-            camera = camera.SetZoom(2);
+            camera = ZoomIn(camera);
             input.Scrolling = MouseScrolling.BACKWARD;
 
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.Zoom - 1, newCamera.Zoom);
         }
@@ -310,8 +309,8 @@ namespace TestProject
             input.Scrolling = MouseScrolling.BACKWARD;
 
             Camera newCamera = camera
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable)
-                .Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+                .Update(VIEWPORT, scrollable)
+                .Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.Zoom, newCamera.Zoom);
         }
@@ -321,9 +320,38 @@ namespace TestProject
         {
             input.Scrolling = MouseScrolling.NONE;
 
-            Camera newCamera = camera.Update(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, scrollable);
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
             Assert.AreEqual(camera.Zoom, newCamera.Zoom);
+        }
+
+        [TestMethod]
+        public void WhenZoomingInThenCoordinatesShouldBeCloser()
+        {
+            input.Scrolling = MouseScrolling.FORWARD;
+
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
+
+            Assert.AreEqual(camera.X + VIEWPORT.Width / 4, newCamera.X);
+            Assert.AreEqual(camera.Y + VIEWPORT.Height / 4, newCamera.Y);
+        }
+
+        [TestMethod]
+        public void WhenZoomingOutThenCoordinatesShouldNeverBecomeLowerThanZero()
+        {
+            camera = ZoomIn(camera);
+            input.Scrolling = MouseScrolling.BACKWARD;
+
+            Camera newCamera = camera.Update(VIEWPORT, scrollable);
+
+            Assert.AreEqual(0, newCamera.X);
+            Assert.AreEqual(0, newCamera.Y);
+        }
+
+        private Camera ZoomIn(Camera camera)
+        {
+            input.Scrolling = MouseScrolling.FORWARD;
+            return camera.Update(VIEWPORT, scrollable);
         }
 
         private class FakeMouseInput : IMouseInput

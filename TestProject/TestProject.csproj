@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CameraTest.cs" />
     <Compile Include="MapTest.cs" />
+    <Compile Include="PreconditionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

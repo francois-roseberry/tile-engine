@@ -49,7 +49,8 @@ namespace TileEngine
 
             int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
             int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-            camera = camera.Update(viewportWidth, viewportHeight, map);
+            Size viewport = new Size(viewportWidth, viewportHeight);
+            camera = camera.Update(viewport, map);
             cursor.Update();
             picker.Update(camera);
 

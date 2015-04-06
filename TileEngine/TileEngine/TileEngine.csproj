@@ -115,6 +115,8 @@
     <Compile Include="Map.cs" />
     <Compile Include="MouseCursor.cs" />
     <Compile Include="MousePicker.cs" />
+    <Compile Include="Preconditions.cs" />
+    <Compile Include="Size.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TileEngineScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
