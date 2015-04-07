@@ -56,9 +56,17 @@ namespace TileEngine
 
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
+            RenderTarget2D target = new RenderTarget2D(GraphicsDevice, GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight);
 
+            GraphicsDevice.SetRenderTarget(target);
+            spriteBatch.Begin();
             renderer.DrawTileMap(spriteBatch, camera, Viewport, map, picker.HoveredTileCoordinates);
+            spriteBatch.End();
+            GraphicsDevice.SetRenderTarget(null);
+
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.Draw(target, Vector2.Zero, Color.White);
             cursor.Draw(spriteBatch);
 
             spriteBatch.End();

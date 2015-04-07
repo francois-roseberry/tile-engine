@@ -35,7 +35,6 @@ namespace TileEngine
             Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
 
             Rectangle viewport = new Rectangle(0, 0, viewportSize.Width, viewportSize.Height);
-            Console.WriteLine(viewport);
 
             foreach (Tile tile in map.Tiles)
             {               
