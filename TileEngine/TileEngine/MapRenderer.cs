@@ -28,11 +28,18 @@ namespace TileEngine
             debugFont = content.Load<SpriteFont>(@"debug");
         }
 
-        public void DrawTileMap(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Map map, Point hoveredTileCoordinates)
+        public RenderTarget2D DrawTileMap(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Map map, Point hoveredTileCoordinates)
         {
             Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
             Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
+
+            RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
+                viewportSize.Width,
+                viewportSize.Height);
+
+            spriteBatch.GraphicsDevice.SetRenderTarget(target);
+            spriteBatch.Begin();
 
             Rectangle viewport = new Rectangle(0, 0, viewportSize.Width, viewportSize.Height);
 
@@ -41,6 +48,11 @@ namespace TileEngine
                 bool highlighted = (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);
                 DrawTile(spriteBatch, camera, viewport, tile, highlighted);
             }
+
+            spriteBatch.End();
+            spriteBatch.GraphicsDevice.SetRenderTarget(null);
+
+            return target;
         }
 
         private void DrawTile(SpriteBatch spriteBatch, Camera camera, Rectangle viewport, Tile tile, bool highlighted)
