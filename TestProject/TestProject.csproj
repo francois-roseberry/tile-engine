@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TileEngine\TileEngine\TileEngine.csproj">
+    <ProjectReference Include="..\TileEngine\TileEngine\TileEngineUI.csproj">
       <Project>{1D2D663D-E788-4C94-979F-DEEABA2BD269}</Project>
-      <Name>TileEngine</Name>
+      <Name>TileEngineUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
