@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestProject</RootNamespace>
-    <AssemblyName>TestProject</AssemblyName>
+    <AssemblyName>TileEngineTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TileEngine\TileEngine\TileEngineUI.csproj">
-      <Project>{1D2D663D-E788-4C94-979F-DEEABA2BD269}</Project>
-      <Name>TileEngineUI</Name>
+    <ProjectReference Include="..\TileEngine\TileEngine.csproj">
+      <Project>{DDC8FF8B-2558-4F45-8709-9ADF256A9ADC}</Project>
+      <Name>TileEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
