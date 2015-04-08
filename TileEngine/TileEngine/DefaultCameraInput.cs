@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TileEngine
 {
-    class DefaultMouseInput : IMouseInput
+    class DefaultCameraInput : ICameraInput
     {
         private int previousScrollValue = 0;
 
@@ -20,7 +20,7 @@ namespace TileEngine
             } 
         }
 
-        public MouseScrolling Scrolling
+        public ScrollingInput Scrolling
         {
             get
             {
@@ -29,15 +29,15 @@ namespace TileEngine
                 previousScrollValue = state.ScrollWheelValue;
                 if (delta > 0)
                 {
-                    return MouseScrolling.FORWARD;
+                    return ScrollingInput.FORWARD;
                 }
 
                 if (delta < 0)
                 {
-                    return MouseScrolling.BACKWARD;
+                    return ScrollingInput.BACKWARD;
                 }
 
-                return MouseScrolling.NONE;
+                return ScrollingInput.NONE;
             }
         }
     }

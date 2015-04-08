@@ -271,7 +271,7 @@ namespace TestProject
         [TestMethod]
         public void WhenMouseIsScrolledForwardThenShouldZoomIn()
         {
-            input.Scrolling = MouseScrolling.FORWARD;
+            input.Scrolling = ScrollingInput.FORWARD;
 
             Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
@@ -281,7 +281,7 @@ namespace TestProject
         [TestMethod]
         public void CannotZoomInCloserThan2()
         {
-            input.Scrolling = MouseScrolling.FORWARD;
+            input.Scrolling = ScrollingInput.FORWARD;
 
             Camera newCamera = camera
                 .Update(VIEWPORT, scrollable)
@@ -296,7 +296,7 @@ namespace TestProject
         public void WhenMouseIsScrolledBackwardThenShouldZoomOut()
         {
             camera = ZoomIn(camera);
-            input.Scrolling = MouseScrolling.BACKWARD;
+            input.Scrolling = ScrollingInput.BACKWARD;
 
             Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
@@ -306,7 +306,7 @@ namespace TestProject
         [TestMethod]
         public void CannotZoomOutFartherThanOne()
         {
-            input.Scrolling = MouseScrolling.BACKWARD;
+            input.Scrolling = ScrollingInput.BACKWARD;
 
             Camera newCamera = camera
                 .Update(VIEWPORT, scrollable)
@@ -318,7 +318,7 @@ namespace TestProject
         [TestMethod]
         public void WhenMouseIsNotScrolledThenShouldNotAffectZoom()
         {
-            input.Scrolling = MouseScrolling.NONE;
+            input.Scrolling = ScrollingInput.NONE;
 
             Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
@@ -328,7 +328,7 @@ namespace TestProject
         [TestMethod]
         public void WhenZoomingInThenCoordinatesShouldBeCloser()
         {
-            input.Scrolling = MouseScrolling.FORWARD;
+            input.Scrolling = ScrollingInput.FORWARD;
 
             Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
@@ -340,7 +340,7 @@ namespace TestProject
         public void WhenZoomingOutThenCoordinatesShouldNeverBecomeLowerThanZero()
         {
             camera = ZoomIn(camera);
-            input.Scrolling = MouseScrolling.BACKWARD;
+            input.Scrolling = ScrollingInput.BACKWARD;
 
             Camera newCamera = camera.Update(VIEWPORT, scrollable);
 
@@ -350,14 +350,14 @@ namespace TestProject
 
         private Camera ZoomIn(Camera camera)
         {
-            input.Scrolling = MouseScrolling.FORWARD;
+            input.Scrolling = ScrollingInput.FORWARD;
             return camera.Update(VIEWPORT, scrollable);
         }
 
-        private class FakeMouseInput : IMouseInput
+        private class FakeMouseInput : ICameraInput
         {
             public Point Position { get; set; }
-            public MouseScrolling Scrolling { get; set; }
+            public ScrollingInput Scrolling { get; set; }
         }
 
         private class FakeScrollable : IScrollable

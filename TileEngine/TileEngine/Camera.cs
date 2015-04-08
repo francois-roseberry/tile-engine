@@ -26,20 +26,20 @@ namespace TileEngine
         private readonly int x;
         private readonly int y;
         private readonly int zoom;
-        private readonly IMouseInput input;
+        private readonly ICameraInput input;
 
         public int X { get { return x; } }
         public int Y { get { return y; } }
         public int Zoom { get { return zoom; } }
 
-        public static Camera Default(IMouseInput input)
+        public static Camera Default(ICameraInput input)
         {
             Preconditions.CheckNotNull(input, "Camera needs an input");
 
             return new Camera(0, 0, 1, input);
         }
 
-        private Camera(int x, int y, int zoom, IMouseInput input)
+        private Camera(int x, int y, int zoom, ICameraInput input)
         {
             this.x = x;
             this.y = y;
@@ -65,13 +65,13 @@ namespace TileEngine
             Preconditions.CheckNotNull(viewport, "Camera needs a viewport to be updated");
             Preconditions.CheckNotNull(scrollable, "Camera needs an IScrollable to be updated");
 
-            MouseScrolling mouseScrolling = input.Scrolling;
+            ScrollingInput mouseScrolling = input.Scrolling;
             int dz = 0;
-            if (mouseScrolling == MouseScrolling.FORWARD)
+            if (mouseScrolling == ScrollingInput.FORWARD)
             {
                 dz = 1;
             }
-            else if (mouseScrolling == MouseScrolling.BACKWARD)
+            else if (mouseScrolling == ScrollingInput.BACKWARD)
             {
                 dz = -1;
             }
