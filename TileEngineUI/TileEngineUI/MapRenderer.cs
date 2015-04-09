@@ -35,8 +35,8 @@ namespace TileEngine
             Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
 
             RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
-                viewportSize.Width,
-                viewportSize.Height);
+                viewportSize.Width/camera.Zoom,
+                viewportSize.Height/camera.Zoom);
 
             spriteBatch.GraphicsDevice.SetRenderTarget(target);
             spriteBatch.Begin();

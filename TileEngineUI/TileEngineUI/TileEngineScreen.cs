@@ -65,8 +65,8 @@ namespace TileEngine
             Rectangle source = new Rectangle(
                 0,
                 0,
-                target.Bounds.Width - (camera.Zoom - 1) * target.Bounds.Width/2,
-                target.Bounds.Height - (camera.Zoom - 1) * target.Bounds.Height/2);
+                target.Bounds.Width/* - (camera.Zoom - 1) * target.Bounds.Width/2*/,
+                target.Bounds.Height/* - (camera.Zoom - 1) * target.Bounds.Height/2*/);
 
             spriteBatch.Draw(target, destination, source, Color.White);
             cursor.Draw(spriteBatch);

@@ -152,7 +152,7 @@ namespace TileEngine
 
         private bool CanMoveRight(int width)
         {
-            return x < width;
+            return x < width * zoom;
         }
 
         private bool CanMoveLeft()
