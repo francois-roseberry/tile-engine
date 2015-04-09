@@ -264,8 +264,8 @@ namespace TestProject
             Point screenCoordinates = new Point(2, 3);
             Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
 
-            Assert.AreEqual((camera.X + screenCoordinates.X) / camera.Zoom, worldCoordinates.X);
-            Assert.AreEqual((camera.Y + screenCoordinates.Y) / camera.Zoom, worldCoordinates.Y);
+            Assert.AreEqual((camera.X + screenCoordinates.X / camera.Zoom), worldCoordinates.X);
+            Assert.AreEqual((camera.Y + screenCoordinates.Y / camera.Zoom), worldCoordinates.Y);
         }
 
         [TestMethod]
