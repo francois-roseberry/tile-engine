@@ -25,6 +25,8 @@ namespace TileEngine
 
         public MapRenderer(Map map)
         {
+            Preconditions.CheckNotNull(map, "MapRenderer needs a map");
+
             this.map = map;
         }
 
@@ -47,7 +49,8 @@ namespace TileEngine
         {
             Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
-            Preconditions.CheckNotNull(map, "MapRenderer needs a map to render it");
+            Preconditions.CheckNotNull(viewportSize, "MapRenderer needs a viewport to render map");
+            Preconditions.CheckNotNull(hoveredTileCoordinates, "MapRenderer needs the coordinates of the hovered tile to render map");
 
             RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
                 viewportSize.Width/camera.Zoom,
