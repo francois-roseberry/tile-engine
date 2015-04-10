@@ -8,16 +8,31 @@ using Microsoft.Xna.Framework;
 
 namespace TileEngine
 {
-    class MapRenderer
+    class MapRenderer : IScrollable
     {
-        private const int BASE_OFFSET_X = -1 * Map.TILE_WIDTH / 2;
-        private const int BASE_OFFSET_Y = -3 * Map.TILE_HEIGHT / 4;
+        private const int TILE_WIDTH = 64;
+        private const int TILE_HEIGHT = 64;
+        private const int BASE_OFFSET_X = -1 * TILE_WIDTH / 2;
+        private const int BASE_OFFSET_Y = -3 * TILE_HEIGHT / 4;
         private const int TILE_STEP_Y = 16;
         private const int ODD_ROW_X_OFFSET = 32;
+
+        private readonly Map map;
 
         private Texture2D tileset;
         private Texture2D highlight;
         private SpriteFont debugFont;
+
+        public MapRenderer(Map map)
+        {
+            this.map = map;
+        }
+
+        public int Width
+        { get { return (Map.NB_TILES_PER_ROW - 1) * TILE_WIDTH; } }
+
+        public int Height
+        { get { return (Map.NB_TILES_PER_COLUMN - 1) * TILE_HEIGHT / 4; } }
 
         public bool DrawDebugInfo { get; set; }
 
@@ -28,7 +43,7 @@ namespace TileEngine
             debugFont = content.Load<SpriteFont>(@"debug");
         }
 
-        public RenderTarget2D DrawTileMap(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Map map, Point hoveredTileCoordinates)
+        public RenderTarget2D Render(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Point hoveredTileCoordinates)
         {
             Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
@@ -58,10 +73,10 @@ namespace TileEngine
         private void DrawTile(SpriteBatch spriteBatch, Camera camera, Rectangle viewport, Tile tile, bool highlighted)
         {
             bool evenRow = tile.Y % 2 == 0;
-            int x = BASE_OFFSET_X - camera.X + tile.X * Map.TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
+            int x = BASE_OFFSET_X - camera.X + tile.X * TILE_WIDTH + (evenRow ? 0 : ODD_ROW_X_OFFSET);
             int y = BASE_OFFSET_Y - camera.Y + tile.Y * TILE_STEP_Y;
 
-            Rectangle destination = new Rectangle(x, y, Map.TILE_WIDTH, Map.TILE_HEIGHT);
+            Rectangle destination = new Rectangle(x, y, TILE_WIDTH, TILE_HEIGHT);
 
             if (!viewport.Intersects(destination))
             {
@@ -71,15 +86,15 @@ namespace TileEngine
             spriteBatch.Draw(
                 tileset,
                 destination,
-                new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT),
+                new Rectangle(0, 0, TILE_WIDTH, TILE_HEIGHT),
                 Color.White);
 
             if (highlighted)
             {
                 spriteBatch.Draw(
                     highlight,
-                    new Rectangle(x, y, Map.TILE_WIDTH, Map.TILE_HEIGHT / 2),
-                    new Rectangle(0, 0, Map.TILE_WIDTH, Map.TILE_HEIGHT / 2),
+                    new Rectangle(x, y, TILE_WIDTH, TILE_HEIGHT / 2),
+                    new Rectangle(0, 0, TILE_WIDTH, TILE_HEIGHT / 2),
                     Color.White * 0.3f);
             }
 

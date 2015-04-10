@@ -18,7 +18,7 @@ namespace TileEngine
     public class TileEngineScreen : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private MapRenderer renderer = new MapRenderer();
+        private MapRenderer renderer;
         private Map map;
         private Camera camera = Camera.Default(new DefaultCameraInput());
         private MouseCursor cursor = new MouseCursor();
@@ -28,6 +28,7 @@ namespace TileEngine
             : base(game)
         {
             map = new Map();
+            renderer = new MapRenderer(map);
         }
 
         protected override void LoadContent()
@@ -47,7 +48,7 @@ namespace TileEngine
             KeyboardState state = Keyboard.GetState();
             renderer.DrawDebugInfo = state.IsKeyDown(Keys.D);
 
-            camera = camera.Update(Viewport, map);
+            camera = camera.Update(Viewport, renderer);
             cursor.Update();
             picker.Update(camera);
 
@@ -56,7 +57,7 @@ namespace TileEngine
 
         public override void Draw(GameTime gameTime)
         {  
-            RenderTarget2D target = renderer.DrawTileMap(spriteBatch, camera, Viewport, map, picker.HoveredTileCoordinates);
+            RenderTarget2D target = renderer.Render(spriteBatch, camera, Viewport, picker.HoveredTileCoordinates);
             
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();

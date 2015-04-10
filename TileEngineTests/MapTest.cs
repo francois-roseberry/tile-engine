@@ -37,7 +37,8 @@ namespace TestProject
             map = new Map();
         }
 
-        [TestMethod]
+        /* TODO : to move on MapRenderer when it will be extracted in a game library
+         * [TestMethod]
         public void WidthShouldBeNumberOfTilesPerRowTimesTileWidth()
         {
             Assert.AreEqual((Map.NB_TILES_PER_ROW - 1) * Map.TILE_WIDTH, map.Width);
@@ -47,7 +48,7 @@ namespace TestProject
         public void HeightShouldBeNumberOfTilesPerColumnTimesQuarterOfTileHeight()
         {
             Assert.AreEqual((Map.NB_TILES_PER_COLUMN - 1) * Map.TILE_HEIGHT / 4, map.Height);
-        }
+        }*/
 
         [TestMethod]
         public void ShouldHaveRightNumberOfTiles()
