@@ -107,7 +107,7 @@ namespace TileEngine
             {
                 spriteBatch.Draw(
                     highlight,
-                    new Rectangle(x, y, TILE_WIDTH, TILE_HEIGHT / 2),
+                    new Rectangle(x, y + TILE_HEIGHT/2, TILE_WIDTH, TILE_HEIGHT / 2),
                     new Rectangle(0, 0, TILE_WIDTH, TILE_HEIGHT / 2),
                     Color.White * 0.3f);
             }

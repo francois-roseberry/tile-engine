@@ -28,7 +28,9 @@ namespace TileEngine
             MouseState state = Mouse.GetState();
             Point screenCoordinates = new Point(state.X, state.Y);
             Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
+            Console.WriteLine("World : " + worldCoordinates);
             hoveredTileCoordinates = WorldToTile(worldCoordinates);
+            Console.WriteLine("Tile : " + hoveredTileCoordinates);
         }
 
         private Point WorldToTile(Point worldCoordinates)
@@ -73,7 +75,7 @@ namespace TileEngine
             }
 
             squareCoordinates.X += dx;
-            squareCoordinates.Y += dy + 3;
+            squareCoordinates.Y += dy + 1;
 
             return squareCoordinates;
         }
