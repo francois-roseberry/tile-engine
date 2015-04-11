@@ -21,6 +21,8 @@ namespace TileEngine
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
             Components.Add(new TileEngineScreen(this));
         }

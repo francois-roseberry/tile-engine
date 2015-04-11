@@ -63,6 +63,8 @@ namespace TileEngine
             Preconditions.CheckNotNull(viewportSize, "MapRenderer needs a viewport to render map");
             Preconditions.CheckNotNull(hoveredTileCoordinates, "MapRenderer needs the coordinates of the hovered tile to render map");
 
+            Console.WriteLine(viewportSize.Width + ", " + viewportSize.Height);
+
             RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
                 viewportSize.Width/camera.Zoom,
                 viewportSize.Height/camera.Zoom);
