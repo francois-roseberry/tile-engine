@@ -90,27 +90,27 @@ namespace TileEngine
                     }
                     break;
                 case ScrollingDirection.UPRIGHT:
-                    if (CanMoveUp() && CanMoveRight(scrollable.Height - viewport.Height))
+                    if (CanMoveUp() && CanMoveRight(scrollable.Width * zoom - viewport.Width))
                     {
                         dx = 1;
                         dy = -1;
                     }
                     break;
                 case ScrollingDirection.DOWNLEFT:
-                    if (CanMoveDown(scrollable.Height - viewport.Height) && CanMoveLeft())
+                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height) && CanMoveLeft())
                     {
                         dx = -1;
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWN:
-                    if (CanMoveDown(scrollable.Height - viewport.Height))
+                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height))
                     {
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWNRIGHT:
-                    if (CanMoveDown(scrollable.Height - viewport.Height) && CanMoveRight(scrollable.Width - viewport.Width))
+                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height) && CanMoveRight(scrollable.Width * zoom - viewport.Width))
                     {
                         dx = 1;
                         dy = 1;
@@ -123,7 +123,7 @@ namespace TileEngine
                     }
                     break;
                 case ScrollingDirection.RIGHT:
-                    if (CanMoveRight(scrollable.Width - viewport.Width))
+                    if (CanMoveRight(scrollable.Width * zoom - viewport.Width))
                     {
                         dx = 1;
                     }
@@ -152,7 +152,7 @@ namespace TileEngine
 
         private bool CanMoveRight(int width)
         {
-            return x < width * zoom;
+            return x * zoom < width;
         }
 
         private bool CanMoveLeft()
@@ -162,7 +162,7 @@ namespace TileEngine
 
         private bool CanMoveDown(int height)
         {
-            return y < height;
+            return y * zoom < height;
         }
 
         private bool CanMoveUp()

@@ -31,10 +31,21 @@ namespace TileEngine
         }
 
         public int Width
-        { get { return (Map.NB_TILES_PER_ROW - 1) * TILE_WIDTH; } }
+        { get { return (Map.NB_TILES_PER_ROW - 1) * TILE_WIDTH; /* -1 because first and last tiles are only half-drawn */ } }
 
         public int Height
-        { get { return (Map.NB_TILES_PER_COLUMN - 1) * TILE_HEIGHT / 4; } }
+        {
+            get
+            {
+                int height = (int)(Map.NB_TILES_PER_COLUMN / 2) * TILE_HEIGHT / 2;
+                if (Map.NB_TILES_PER_COLUMN % 2 == 0)
+                {
+                    height -= TILE_HEIGHT / 4;
+                }
+
+                return height;
+            } 
+        }
 
         public bool DrawDebugInfo { get; set; }
 
