@@ -139,13 +139,13 @@ namespace TileEngine
             int newY = y + dy;
             if (newZoom - zoom > 0) // We've zoomed in
             {
-                newX += viewport.Width / 4;
-                newY += viewport.Height / 4;
+                newX += viewport.Width * zoom / 4;
+                newY += viewport.Height * zoom / 4;
             }
             else if (newZoom - zoom < 0) /// We've zoomed out
             {
-                newX = Math.Max(newX - viewport.Width / 4, 0);
-                newY = Math.Max(newY - viewport.Height / 4, 0);
+                newX = Math.Max(newX - viewport.Width * zoom / 4, 0);
+                newY = Math.Max(newY - viewport.Height * zoom / 4, 0);
             }
             return new Camera(newX, newY, newZoom, input);
         }
