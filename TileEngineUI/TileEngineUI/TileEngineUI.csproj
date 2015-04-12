@@ -114,6 +114,7 @@
     <Compile Include="TileEngineScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MapViewport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

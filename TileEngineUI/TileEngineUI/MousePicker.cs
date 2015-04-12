@@ -11,12 +11,12 @@ namespace TileEngine
 {
     class MousePicker
     {
-        private Texture2D mouseMap;
+        private readonly Texture2D mouseMap;
         private Point hoveredTileCoordinates;
 
         public Point HoveredTileCoordinates { get { return hoveredTileCoordinates; } }
 
-        public void LoadContent(ContentManager content)
+        public MousePicker(ContentManager content)
         {
             mouseMap = content.Load<Texture2D>("mousemap");
         }

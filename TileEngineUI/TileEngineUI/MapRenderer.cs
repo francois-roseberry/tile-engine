@@ -19,15 +19,20 @@ namespace TileEngine
 
         private readonly Map map;
 
-        private Texture2D tileset;
-        private Texture2D highlight;
-        private SpriteFont debugFont;
+        private readonly Texture2D tileset;
+        private readonly Texture2D highlight;
+        private readonly SpriteFont debugFont;
 
-        public MapRenderer(Map map)
+        public MapRenderer(Map map, ContentManager content)
         {
             Preconditions.CheckNotNull(map, "MapRenderer needs a map");
+            Preconditions.CheckNotNull(content, "MapRenderer needs a ContentManager");
 
             this.map = map;
+
+            tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
+            highlight = content.Load<Texture2D>(@"highlight");
+            debugFont = content.Load<SpriteFont>(@"debug");
         }
 
         public int Width
@@ -48,13 +53,6 @@ namespace TileEngine
         }
 
         public bool DrawDebugInfo { get; set; }
-
-        public void LoadContent(ContentManager content)
-        {
-            tileset = content.Load<Texture2D>(@"Tilesets\base-64x64");
-            highlight = content.Load<Texture2D>(@"highlight");
-            debugFont = content.Load<SpriteFont>(@"debug");
-        }
 
         public RenderTarget2D Render(SpriteBatch spriteBatch, Camera camera, Size viewportSize, Point hoveredTileCoordinates)
         {
