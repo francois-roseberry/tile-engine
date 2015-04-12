@@ -61,7 +61,6 @@ namespace TileEngine
             Preconditions.CheckNotNull(spriteBatch, "MapRenderer needs a spriteBatch to draw map");
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
             Preconditions.CheckNotNull(viewportSize, "MapRenderer needs a viewport to render map");
-            Preconditions.CheckNotNull(hoveredTileCoordinates, "MapRenderer needs the coordinates of the hovered tile to render map");
 
             RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
                 viewportSize.Width/camera.Zoom,
@@ -74,7 +73,7 @@ namespace TileEngine
 
             foreach (Tile tile in map.Tiles)
             {               
-                bool highlighted = (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);
+                bool highlighted = hoveredTileCoordinates != null && (tile.X == hoveredTileCoordinates.X && tile.Y == hoveredTileCoordinates.Y);
                 DrawTile(spriteBatch, camera, viewport, tile, highlighted);
             }
 
