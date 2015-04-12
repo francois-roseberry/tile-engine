@@ -18,11 +18,11 @@ namespace TileEngine
     public class TileEngineScreen : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private MapRenderer renderer;
-        private Map map;
+        private readonly MapRenderer renderer;
+        private readonly Map map;
         private Camera camera = Camera.Default(new DefaultCameraInput());
-        private MouseCursor cursor = new MouseCursor();
-        private MousePicker picker = new MousePicker();
+        private readonly MouseCursor cursor = new MouseCursor();
+        private readonly MousePicker picker = new MousePicker();
 
         public TileEngineScreen(Game game)
             : base(game)
