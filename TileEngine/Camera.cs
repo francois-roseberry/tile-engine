@@ -73,7 +73,7 @@ namespace TileEngine
             }
             int dx = 0;
             int dy = 0;
-            ScrollingDirection scrolling = GetScrollingDirection(viewport.Width, viewport.Height);
+            ScrollingDirection scrolling = GetScrollingDirection(viewport);
             switch (scrolling)
             {
                 case ScrollingDirection.UPLEFT:
@@ -170,7 +170,7 @@ namespace TileEngine
             return y > 0;
         }
 
-        private ScrollingDirection GetScrollingDirection(int viewportWidth, int viewportHeight)
+        private ScrollingDirection GetScrollingDirection(Size viewport)
         {
             ScrollingDirection scrolling = ScrollingDirection.NONE;
             Point position = input.Position;
@@ -178,7 +178,7 @@ namespace TileEngine
             {
                 scrolling = ScrollingDirection.LEFT;
             }
-            else if (position.X > viewportWidth - SCROLL_BUFFER)
+            else if (position.X > viewport.Width - SCROLL_BUFFER)
             {
                 scrolling = ScrollingDirection.RIGHT;
             }
@@ -196,7 +196,7 @@ namespace TileEngine
 
                 return ScrollingDirection.UP;                
             }
-            else if (position.Y > viewportHeight - SCROLL_BUFFER)
+            else if (position.Y > viewport.Height - SCROLL_BUFFER)
             {
                 if (scrolling == ScrollingDirection.LEFT)
                 {
