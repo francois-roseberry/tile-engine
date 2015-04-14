@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using TileEngine.Controls;
 
 
 namespace TileEngine
@@ -20,6 +21,7 @@ namespace TileEngine
         private SpriteBatch spriteBatch;
         private readonly MouseCursor cursor = new MouseCursor();
         private MapViewport viewport;
+        private SidePanel panel;
 
         public TileEngineScreen(Game game)
             : base(game)
@@ -30,6 +32,9 @@ namespace TileEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
             cursor.LoadContent(Game.Content);
             viewport = new MapViewport(Viewport, Game.Content);
+
+            Rectangle bounds = new Rectangle(GraphicsDevice.PresentationParameters.BackBufferWidth - 200, 0, 200, GraphicsDevice.PresentationParameters.BackBufferHeight);
+            panel = new SidePanel(bounds, GraphicsDevice);
         }
 
         /// <summary>
@@ -49,6 +54,7 @@ namespace TileEngine
             GraphicsDevice.Clear(Color.Black);
 
             viewport.Draw(spriteBatch);
+            panel.Draw(spriteBatch);
 
             spriteBatch.Begin();
             cursor.Draw(spriteBatch);
@@ -61,9 +67,21 @@ namespace TileEngine
         {
             get
             {
-                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 100;
                 int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
                 return new Size(viewportWidth, viewportHeight);
+            }
+        }
+
+        private Rectangle SidePanelBounds
+        {
+            get
+            {
+                int x = GraphicsDevice.PresentationParameters.BackBufferWidth - 200;
+                int y = 0;
+                int width = 200;
+                int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
+                return new Rectangle(x, y, width, height);
             }
         }
     }
