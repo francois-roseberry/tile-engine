@@ -5,7 +5,7 @@ namespace TileEngine
     public class Map
     {
         public const int NB_TILES_PER_ROW = 20;
-        public const int NB_TILES_PER_COLUMN = 40;
+        public const int NB_TILES_PER_COLUMN = 20;
 
         private List<Tile> tiles = new List<Tile>();
 
