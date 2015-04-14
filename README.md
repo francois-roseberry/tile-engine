@@ -11,7 +11,7 @@ Features implemented :
 - Culling
 
 To be done next :
-- Putting it inside a UI
+- Putting it inside a UI (with a side panel (containing a mini-map) on the right and a menu bar on top)
 - Drawing objects larger than 1 tile
 - Reorientation of map's view (north, south, east, west)
 - Changing the cursor to reflect the action
