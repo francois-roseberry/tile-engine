@@ -16,13 +16,14 @@ namespace TileEngine.Controls
         {
             this.bounds = bounds;
             background = new Texture2D(device, 1, 1);
-            background.SetData(new Color[] { Color.LightBlue });
+            background.SetData(new Color[] { Color.White });
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(background, bounds, Color.White);
+            spriteBatch.Draw(background, bounds, Color.DarkBlue);
+            spriteBatch.Draw(background, new Rectangle(bounds.X + 1, bounds.Y + 1, bounds.Width - 2, bounds.Height - 2), Color.LightBlue);
             spriteBatch.End();
         }
     }
