@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace TileEngine
 {
-    class MapRenderer : IScrollable
+    class MapRenderer : IScrollable, IMapProvider
     {
         private const int TILE_WIDTH = 64;
         private const int TILE_HEIGHT = 64;
@@ -54,6 +54,8 @@ namespace TileEngine
                 return height;
             } 
         }
+
+        public Map Map { get { return map; } }
 
         public bool DrawDebugInfo { get; set; }
 

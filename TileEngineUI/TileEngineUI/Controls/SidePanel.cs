@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace TileEngine.Controls
 {
@@ -13,11 +14,13 @@ namespace TileEngine.Controls
         private readonly Texture2D background;
 
         private readonly Minimap minimap;
+        private readonly MapSizeLabel label;
 
-        public SidePanel(Rectangle bounds, GraphicsDevice device)
+        public SidePanel(Rectangle bounds, GraphicsDevice device, ContentManager content, IMapProvider provider)
         {
             this.bounds = bounds;
             this.minimap = new Minimap(new Rectangle(10, 10, 200, 200), device);
+            this.label = new MapSizeLabel(new Point(30, 240), content, provider);
             background = new Texture2D(device, 1, 1);
             background.SetData(new Color[] { Color.White });
         }
@@ -28,6 +31,7 @@ namespace TileEngine.Controls
             spriteBatch.Draw(background, bounds, Color.DarkBlue);
             spriteBatch.Draw(background, new Rectangle(bounds.X + 1, bounds.Y + 1, bounds.Width - 2, bounds.Height - 2), Color.LightBlue);
             minimap.Draw(bounds.X, bounds.Y, spriteBatch);
+            label.Draw(bounds.X, bounds.Y, spriteBatch);
             spriteBatch.End();
         }
     }

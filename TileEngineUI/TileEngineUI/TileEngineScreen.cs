@@ -32,7 +32,7 @@ namespace TileEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
             cursor.LoadContent(Game.Content);
             viewport = new MapViewport(Viewport, Game.Content);
-            panel = new SidePanel(SidePanelBounds, GraphicsDevice);
+            panel = new SidePanel(SidePanelBounds, GraphicsDevice, Game.Content, viewport.MapProvider);
         }
 
         /// <summary>

@@ -26,6 +26,8 @@ namespace TileEngine.Controls
             
         }
 
+        public IMapProvider MapProvider { get { return renderer; } }
+
         public void Update()
         {
             KeyboardState state = Keyboard.GetState();

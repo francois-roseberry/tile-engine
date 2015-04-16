@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="ICameraInput.cs" />
+    <Compile Include="IMapProvider.cs" />
     <Compile Include="IScrollable.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Preconditions.cs" />
