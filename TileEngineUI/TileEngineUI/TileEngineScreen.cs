@@ -32,9 +32,7 @@ namespace TileEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
             cursor.LoadContent(Game.Content);
             viewport = new MapViewport(Viewport, Game.Content);
-
-            Rectangle bounds = new Rectangle(GraphicsDevice.PresentationParameters.BackBufferWidth - 200, 0, 200, GraphicsDevice.PresentationParameters.BackBufferHeight);
-            panel = new SidePanel(bounds, GraphicsDevice);
+            panel = new SidePanel(SidePanelBounds, GraphicsDevice);
         }
 
         /// <summary>
@@ -67,7 +65,7 @@ namespace TileEngine
         {
             get
             {
-                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 200;
+                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
                 int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
                 return new Size(viewportWidth, viewportHeight);
             }
@@ -77,9 +75,9 @@ namespace TileEngine
         {
             get
             {
-                int x = GraphicsDevice.PresentationParameters.BackBufferWidth - 200;
+                int x = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
                 int y = 0;
-                int width = 200;
+                int width = 220;
                 int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
                 return new Rectangle(x, y, width, height);
             }
