@@ -67,7 +67,7 @@ namespace TileEngine
         {
             get
             {
-                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 100;
+                int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 200;
                 int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
                 return new Size(viewportWidth, viewportHeight);
             }

@@ -23,6 +23,9 @@ namespace TileEngine
         private readonly Texture2D highlight;
         private readonly SpriteFont debugFont;
 
+        private RenderTarget2D target;
+        private int targetZoom;
+
         public MapRenderer(Map map, ContentManager content)
         {
             Preconditions.CheckNotNull(map, "MapRenderer needs a map");
@@ -60,9 +63,13 @@ namespace TileEngine
             Preconditions.CheckNotNull(camera, "MapRenderer needs a camera to render map");
             Preconditions.CheckNotNull(viewportSize, "MapRenderer needs a viewport to render map");
 
-            RenderTarget2D target = new RenderTarget2D(spriteBatch.GraphicsDevice,
-                viewportSize.Width/camera.Zoom,
-                viewportSize.Height/camera.Zoom);
+            if (target == null || targetZoom != camera.Zoom)
+            {
+                target = new RenderTarget2D(spriteBatch.GraphicsDevice,
+                    viewportSize.Width / camera.Zoom,
+                    viewportSize.Height / camera.Zoom);
+                targetZoom = camera.Zoom;
+            }
 
             spriteBatch.GraphicsDevice.SetRenderTarget(target);
             spriteBatch.Begin();
