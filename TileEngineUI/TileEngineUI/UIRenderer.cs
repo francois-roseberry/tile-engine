@@ -22,16 +22,6 @@ namespace TileEngine
             this.batch = batch;
         }
 
-        public void BeginDraw()
-        {
-            batch.Begin();
-        }
-
-        public void EndDraw()
-        {
-            batch.End();
-        }
-
         public void DrawText(String text, Vector2 position)
         {
             batch.DrawString(font, text, position, Color.Black);

@@ -24,11 +24,9 @@ namespace TileEngine.Controls
 
         public void Draw(UIRenderer renderer)
         {
-            renderer.BeginDraw();
             renderer.DrawPanel(bounds);
             minimap.Draw(bounds.X, bounds.Y, renderer);
             label.Draw(bounds.X, bounds.Y, renderer);
-            renderer.EndDraw();
         }
     }
 }

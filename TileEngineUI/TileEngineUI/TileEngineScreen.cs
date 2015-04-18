@@ -54,9 +54,10 @@ namespace TileEngine
             GraphicsDevice.Clear(Color.Black);
 
             viewport.Draw(spriteBatch);
-            panel.Draw(renderer);
 
             spriteBatch.Begin();
+            panel.Draw(renderer);
+         
             cursor.Draw(spriteBatch);
             spriteBatch.End();
 
