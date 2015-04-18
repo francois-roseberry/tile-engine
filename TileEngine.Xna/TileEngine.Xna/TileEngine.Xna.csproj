@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TileEngine</RootNamespace>
-    <AssemblyName>TileEngineUI</AssemblyName>
+    <RootNamespace>TileEngine.Xna</RootNamespace>
+    <AssemblyName>TileEngine.Xna</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
@@ -125,12 +125,12 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TileEngine\TileEngine.csproj">
+    <ProjectReference Include="..\..\TileEngine.Core\TileEngine.Core.csproj">
       <Project>{DDC8FF8B-2558-4F45-8709-9ADF256A9ADC}</Project>
-      <Name>TileEngine</Name>
+      <Name>TileEngine.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TileEngineContent\TileEngineContent.contentproj">
-      <Name>TileEngineContent %28Content%29</Name>
+    <ProjectReference Include="..\TileEngine.Content\TileEngine.Content.contentproj">
+      <Name>TileEngine.Content %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
       <Project>{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}</Project>
     </ProjectReference>

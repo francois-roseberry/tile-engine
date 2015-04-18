@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TileEngine")]
+[assembly: AssemblyTitle("TileEngine.Core")]
 [assembly: AssemblyProduct("TileEngine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Microsoft")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
-[assembly: Guid("05ddf6d4-5ccb-4275-9966-5a0b44ed043a")]
+[assembly: Guid("eb77d0f5-7c2e-45b6-a09f-70a551bc06c9")]
 
 // Version information for an assembly consists of the following four values:
 //

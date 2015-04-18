@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngineUI", "TileEngineUI\TileEngineUI\TileEngineUI.csproj", "{1D2D663D-E788-4C94-979F-DEEABA2BD269}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine.Xna", "TileEngine.Xna\TileEngine.Xna\TileEngine.Xna.csproj", "{1D2D663D-E788-4C94-979F-DEEABA2BD269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngineContent", "TileEngineUI\TileEngineContent\TileEngineContent.contentproj", "{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine.Content", "TileEngine.Xna\TileEngine.Content\TileEngine.Content.contentproj", "{63EF87F1-BA28-4194-AEC0-F7FC85C34FC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngineTests", "TileEngineTests\TileEngineTests.csproj", "{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine.Core.Tests", "TileEngine.Core.Tests\TileEngine.Core.Tests.csproj", "{3D39FFB3-1AF2-47C3-9454-EFF1A161D813}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1FB3ED16-7154-4EC7-9629-63EF387E3B82}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine", "TileEngine\TileEngine.csproj", "{DDC8FF8B-2558-4F45-8709-9ADF256A9ADC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileEngine.Core", "TileEngine.Core\TileEngine.Core.csproj", "{DDC8FF8B-2558-4F45-8709-9ADF256A9ADC}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

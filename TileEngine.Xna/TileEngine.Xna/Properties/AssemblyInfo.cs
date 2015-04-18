@@ -5,22 +5,24 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TestProject")]
+[assembly: AssemblyTitle("TileEngine.Xna")]
+[assembly: AssemblyProduct("TileEngine")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TestProject")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(true)]
+// COM, set the ComVisible attribute to true on that type. Only Windows
+// assemblies support COM.
+[assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("55c1a5dc-ff68-43af-9af4-cd7dd1bc3a84")]
+// On Windows, the following GUID is for the ID of the typelib if this
+// project is exposed to COM. On other platforms, it unique identifies the
+// title storage container when deploying this assembly to the device.
+[assembly: Guid("05ddf6d4-5ccb-4275-9966-5a0b44ed043a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,7 +31,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
