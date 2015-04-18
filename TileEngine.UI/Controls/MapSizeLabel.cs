@@ -5,10 +5,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using TileEngine.UI;
 
-namespace TileEngine.Controls
+namespace TileEngine.UI.Controls
 {
-    class MapSizeLabel
+    public class MapSizeLabel
     {
         private readonly Point position;
         private readonly IMapProvider provider;
@@ -19,7 +20,7 @@ namespace TileEngine.Controls
             this.provider = provider;
         }
 
-        public void Draw(int parentX, int parentY, UIRenderer renderer)
+        public void Draw(int parentX, int parentY, IUIRenderer renderer)
         {
             String text = String.Format("Map size : {0} x {1}", provider.Map.Rows, provider.Map.Columns);
             renderer.DrawText(text, new Vector2(parentX + position.X, parentY + position.Y));

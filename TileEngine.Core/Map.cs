@@ -20,9 +20,9 @@ namespace TileEngine
             }
         }
 
-        public int Rows { get { return NB_TILES_PER_COLUMN; } }
+        public virtual int Rows { get { return NB_TILES_PER_COLUMN; } }
 
-        public int Columns { get { return NB_TILES_PER_ROW; } }
+        public virtual int Columns { get { return NB_TILES_PER_ROW; } }
 
         public List<Tile> Tiles { get { return tiles; } }
     }
