@@ -11,28 +11,24 @@ namespace TileEngine.Controls
     class SidePanel
     {
         private readonly Rectangle bounds;
-        private readonly Texture2D background;
 
         private readonly Minimap minimap;
         private readonly MapSizeLabel label;
 
-        public SidePanel(Rectangle bounds, GraphicsDevice device, ContentManager content, IMapProvider provider)
+        public SidePanel(Rectangle bounds, IMapProvider provider)
         {
             this.bounds = bounds;
-            this.minimap = new Minimap(new Rectangle(10, 10, 200, 200), device);
-            this.label = new MapSizeLabel(new Point(30, 240), content, provider);
-            background = new Texture2D(device, 1, 1);
-            background.SetData(new Color[] { Color.White });
+            this.minimap = new Minimap(new Rectangle(10, 10, 200, 200));
+            this.label = new MapSizeLabel(new Point(30, 240), provider);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(UIRenderer renderer)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(background, bounds, Color.DarkBlue);
-            spriteBatch.Draw(background, new Rectangle(bounds.X + 1, bounds.Y + 1, bounds.Width - 2, bounds.Height - 2), Color.LightBlue);
-            minimap.Draw(bounds.X, bounds.Y, spriteBatch);
-            label.Draw(bounds.X, bounds.Y, spriteBatch);
-            spriteBatch.End();
+            renderer.BeginDraw();
+            renderer.DrawPanel(bounds);
+            minimap.Draw(bounds.X, bounds.Y, renderer);
+            label.Draw(bounds.X, bounds.Y, renderer);
+            renderer.EndDraw();
         }
     }
 }

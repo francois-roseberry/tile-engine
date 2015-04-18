@@ -22,6 +22,7 @@ namespace TileEngine
         private readonly MouseCursor cursor = new MouseCursor();
         private MapViewport viewport;
         private SidePanel panel;
+        private UIRenderer renderer;
 
         public TileEngineScreen(Game game)
             : base(game)
@@ -30,9 +31,10 @@ namespace TileEngine
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            renderer = new UIRenderer(GraphicsDevice, Game.Content, spriteBatch);
             cursor.LoadContent(Game.Content);
             viewport = new MapViewport(Viewport, Game.Content);
-            panel = new SidePanel(SidePanelBounds, GraphicsDevice, Game.Content, viewport.MapProvider);
+            panel = new SidePanel(SidePanelBounds, viewport.MapProvider);
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace TileEngine
             GraphicsDevice.Clear(Color.Black);
 
             viewport.Draw(spriteBatch);
-            panel.Draw(spriteBatch);
+            panel.Draw(renderer);
 
             spriteBatch.Begin();
             cursor.Draw(spriteBatch);

@@ -10,18 +10,15 @@ namespace TileEngine.Controls
     class Minimap
     {
         private readonly Rectangle bounds;
-        private readonly Texture2D background;
 
-        public Minimap(Rectangle bounds, GraphicsDevice device)
+        public Minimap(Rectangle bounds)
         {
             this.bounds = bounds;
-            background = new Texture2D(device, 1, 1);
-            background.SetData(new Color[] { Color.White });
         }
 
-        public void Draw(int parentX, int parentY, SpriteBatch batch)
+        public void Draw(int parentX, int parentY, UIRenderer renderer)
         {
-            batch.Draw(background, new Rectangle(bounds.X + parentX, bounds.Y + parentY, bounds.Width, bounds.Height), Color.Black);
+            renderer.FillRectangle(new Rectangle(bounds.X + parentX, bounds.Y + parentY, bounds.Width, bounds.Height), Color.Black);
         }
     }
 }

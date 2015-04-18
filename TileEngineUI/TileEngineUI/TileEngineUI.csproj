@@ -118,6 +118,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Controls\MapViewport.cs" />
+    <Compile Include="UIRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

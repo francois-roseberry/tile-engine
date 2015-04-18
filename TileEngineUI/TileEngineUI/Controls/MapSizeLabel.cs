@@ -11,20 +11,18 @@ namespace TileEngine.Controls
     class MapSizeLabel
     {
         private readonly Point position;
-        private readonly SpriteFont font;
         private readonly IMapProvider provider;
 
-        public MapSizeLabel(Point position, ContentManager content, IMapProvider provider)
+        public MapSizeLabel(Point position, IMapProvider provider)
         {
             this.position = position;
             this.provider = provider;
-            font = content.Load<SpriteFont>(@"debug");
         }
 
-        public void Draw(int parentX, int parentY, SpriteBatch batch)
+        public void Draw(int parentX, int parentY, UIRenderer renderer)
         {
             String text = String.Format("Map size : {0} x {1}", provider.Map.Rows, provider.Map.Columns);
-            batch.DrawString(font, text, new Vector2(parentX + position.X, parentY + position.Y), Color.Black);
+            renderer.DrawText(text, new Vector2(parentX + position.X, parentY + position.Y));
         }
     }
 }
