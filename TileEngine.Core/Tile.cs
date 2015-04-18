@@ -1,4 +1,4 @@
-﻿namespace TileEngine
+﻿namespace TileEngine.Core
 {
     public class Tile
     {

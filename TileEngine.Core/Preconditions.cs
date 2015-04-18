@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TileEngine
+namespace TileEngine.Core
 {
     public class Preconditions
     {

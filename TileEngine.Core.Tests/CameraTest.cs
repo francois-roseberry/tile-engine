@@ -2,8 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.Xna.Framework;
+using TileEngine.Core;
 
-namespace TestProject
+namespace TileEngine.Core.Tests
 {
     [TestClass]
     public class CameraTest

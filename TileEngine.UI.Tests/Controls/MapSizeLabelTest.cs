@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TileEngine.UI.Controls;
 using Microsoft.Xna.Framework;
+using TileEngine.Core;
 
 namespace TileEngine.UI.Tests.Controls
 {

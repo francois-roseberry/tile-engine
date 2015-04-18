@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using TileEngine.UI.Controls;
+using TileEngine.Core;
 
-namespace TileEngine.Controls
+namespace TileEngine.Xna.Controls
 {
     class SidePanel
     {

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TileEngine;
+using TileEngine.Core;
 
-namespace TestProject
+namespace TileEngine.Core.Tests
 {
     [TestClass]
     public class PreconditionsTest

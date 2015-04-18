@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using TileEngine.Core;
 
-namespace TileEngine
+namespace TileEngine.Xna
 {
     class DefaultCameraInput : ICameraInput
     {

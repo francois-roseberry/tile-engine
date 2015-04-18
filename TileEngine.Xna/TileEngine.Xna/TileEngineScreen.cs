@@ -8,10 +8,12 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using TileEngine.Controls;
+using TileEngine.UI.Controls;
+using TileEngine.Core;
+using TileEngine.Xna.Controls;
 
 
-namespace TileEngine
+namespace TileEngine.Xna
 {
     /// <summary>
     /// This is a game component that implements IUpdateable.

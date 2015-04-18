@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TileEngine
+namespace TileEngine.Core
 {
     public class Map
     {

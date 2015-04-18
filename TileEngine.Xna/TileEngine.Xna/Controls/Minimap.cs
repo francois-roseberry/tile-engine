@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TileEngine.Controls
+namespace TileEngine.Xna.Controls
 {
     class Minimap
     {
