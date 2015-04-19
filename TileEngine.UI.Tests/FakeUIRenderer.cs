@@ -36,5 +36,9 @@ namespace TileEngine.UI.Tests
             cachedRectangle = bounds;
             cachedColor = color;
         }
+
+        public void DrawPanel(Rectangle bounds)
+        {
+        }
     }
 }

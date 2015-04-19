@@ -107,7 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\SidePanel.cs" />
     <Compile Include="DefaultCameraInput.cs" />
     <Compile Include="MapRenderer.cs" />
     <Compile Include="MouseCursor.cs" />

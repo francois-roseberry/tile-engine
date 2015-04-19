@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Controls\MapSizeLabel.cs" />
     <Compile Include="Controls\Minimap.cs" />
+    <Compile Include="Controls\SidePanel.cs" />
     <Compile Include="IUIRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

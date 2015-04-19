@@ -10,5 +10,6 @@ namespace TileEngine.UI
     {
         void DrawText(string text, Vector2 position);
         void FillRectangle(Rectangle bounds, Color color);
+        void DrawPanel(Rectangle bounds);
     }
 }

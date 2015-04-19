@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Content;
 using TileEngine.UI.Controls;
 using TileEngine.Core;
 
-namespace TileEngine.Xna.Controls
+namespace TileEngine.UI.Controls
 {
-    class SidePanel
+    public class SidePanel
     {
         private readonly Rectangle bounds;
 
@@ -24,7 +24,7 @@ namespace TileEngine.Xna.Controls
             this.label = new MapSizeLabel(new Point(30, 240), provider);
         }
 
-        public void Draw(UIRenderer renderer)
+        public void Draw(IUIRenderer renderer)
         {
             renderer.DrawPanel(bounds);
             minimap.Draw(bounds.X, bounds.Y, renderer);
