@@ -12,6 +12,7 @@ namespace TileEngine.UI.Tests
         private Vector2 cachedPosition;
         private Rectangle cachedRectangle;
         private Color cachedColor;
+        private Rectangle cachedPanel;
 
         public string CachedText
         { get { return cachedText; } }
@@ -24,6 +25,9 @@ namespace TileEngine.UI.Tests
 
         public Color CachedColor
         { get { return cachedColor; } }
+
+        public Rectangle CachedPanel
+        { get { return cachedPanel; } }
 
         public void DrawText(string text, Vector2 position)
         {
@@ -39,6 +43,7 @@ namespace TileEngine.UI.Tests
 
         public void DrawPanel(Rectangle bounds)
         {
+            cachedPanel = bounds;
         }
     }
 }

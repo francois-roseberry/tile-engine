@@ -13,22 +13,25 @@ namespace TileEngine.UI.Controls
     public class SidePanel
     {
         private readonly Rectangle bounds;
-
-        private readonly Minimap minimap;
-        private readonly MapSizeLabel label;
+        private readonly List<IControl> children = new List<IControl>();
 
         public SidePanel(Rectangle bounds, IMapProvider provider)
         {
             this.bounds = bounds;
-            this.minimap = new Minimap(new Rectangle(10, 10, 200, 200));
-            this.label = new MapSizeLabel(new Point(30, 240), provider);
+            children.Add(new Minimap(new Rectangle(10, 10, 200, 200)));
+            children.Add(new MapSizeLabel(new Point(30, 240), provider));
         }
+
+        public List<IControl> Children
+        { get { return children; } }
 
         public void Draw(IUIRenderer renderer)
         {
             renderer.DrawPanel(bounds);
-            minimap.Draw(bounds.X, bounds.Y, renderer);
-            label.Draw(bounds.X, bounds.Y, renderer);
+            foreach (IControl child in children)
+            {
+                child.Draw(bounds.X, bounds.Y, renderer);
+            }
         }
     }
 }

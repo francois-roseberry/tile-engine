@@ -10,10 +10,11 @@ using TileEngine.Core;
 
 namespace TileEngine.UI.Controls
 {
-    public class MapSizeLabel
+    public class MapSizeLabel : IControl
     {
         private readonly Point position;
         private readonly IMapProvider provider;
+        private Point point;
 
         public MapSizeLabel(Point position, IMapProvider provider)
         {
@@ -25,6 +26,15 @@ namespace TileEngine.UI.Controls
         {
             String text = String.Format("Map size : {0} x {1}", provider.Map.Rows, provider.Map.Columns);
             renderer.DrawText(text, new Vector2(parentX + position.X, parentY + position.Y));
+        }
+
+        public override bool Equals(Object obj)
+        {
+            MapSizeLabel other = obj as MapSizeLabel;
+            if (other == null)
+                return false;
+            else
+                return position.Equals(other.position);
         }
     }
 }

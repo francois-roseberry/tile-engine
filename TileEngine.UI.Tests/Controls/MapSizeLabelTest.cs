@@ -12,14 +12,13 @@ namespace TileEngine.UI.Tests.Controls
     [TestClass]
     public class MapSizeLabelTest
     {
-        private const int MAP_COLUMNS = 40;
-        private const int MAP_ROWS = 60;
         private const int PARENT_X = 10;
         private const int PARENT_Y = 20;
         private const int X = 1;
         private const int Y = 2;
         private MapSizeLabel label;
         private FakeUIRenderer renderer;
+        private FakeMapProvider provider;
         private TestContext testContextInstance;
 
         public TestContext TestContext
@@ -38,38 +37,22 @@ namespace TileEngine.UI.Tests.Controls
         public void Setup()
         {
             renderer = new FakeUIRenderer();
+            provider = new FakeMapProvider();
 
-            label = new MapSizeLabel(new Point(X, Y), new FakeMapProvider());
+            label = new MapSizeLabel(new Point(X, Y), provider);
             label.Draw(PARENT_X, PARENT_Y, renderer);
         }
 
         [TestMethod]
         public void SizeOfMapShouldBeWritten()
         {
-            Assert.AreEqual("Map size : " + MAP_ROWS + " x " + MAP_COLUMNS, renderer.CachedText);
+            Assert.AreEqual("Map size : " + provider.Map.Rows + " x " + provider.Map.Columns, renderer.CachedText);
         }
 
         [TestMethod]
         public void AssertPositionDrawn()
         {
             Assert.AreEqual(new Vector2(PARENT_X + X, PARENT_Y + Y), renderer.CachedPosition);
-        }
-
-        private class FakeMapProvider : IMapProvider
-        {
-            public Map Map
-            {
-                get { return new FakeMap(); }
-            }
-        }
-
-        private class FakeMap : Map
-        {
-            public override int Columns
-            { get { return MAP_COLUMNS; } }
-
-            public override int Rows
-            { get { return MAP_ROWS; } }
         }
     }
 }
