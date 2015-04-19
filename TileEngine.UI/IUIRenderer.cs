@@ -9,5 +9,6 @@ namespace TileEngine.UI
     public interface IUIRenderer
     {
         void DrawText(string text, Vector2 position);
+        void FillRectangle(Rectangle bounds, Color color);
     }
 }

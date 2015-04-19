@@ -50,6 +50,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\MinimapTest.cs" />
+    <Compile Include="FakeUIRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\MapSizeLabelTest.cs" />
   </ItemGroup>

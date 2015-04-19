@@ -5,9 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TileEngine.Xna.Controls
+namespace TileEngine.UI.Controls
 {
-    class Minimap
+    public class Minimap
     {
         private readonly Rectangle bounds;
 
@@ -16,7 +16,7 @@ namespace TileEngine.Xna.Controls
             this.bounds = bounds;
         }
 
-        public void Draw(int parentX, int parentY, UIRenderer renderer)
+        public void Draw(int parentX, int parentY, IUIRenderer renderer)
         {
             renderer.FillRectangle(new Rectangle(bounds.X + parentX, bounds.Y + parentY, bounds.Width, bounds.Height), Color.Black);
         }

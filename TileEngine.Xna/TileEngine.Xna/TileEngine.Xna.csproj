@@ -107,7 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Minimap.cs" />
     <Compile Include="Controls\SidePanel.cs" />
     <Compile Include="DefaultCameraInput.cs" />
     <Compile Include="MapRenderer.cs" />

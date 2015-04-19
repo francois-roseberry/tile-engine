@@ -55,24 +55,6 @@ namespace TileEngine.UI.Tests.Controls
             Assert.AreEqual(new Vector2(PARENT_X + X, PARENT_Y + Y), renderer.CachedPosition);
         }
 
-        private class FakeUIRenderer : IUIRenderer
-        {
-            private string cachedText;
-            private Vector2 cachedPosition;
-
-            public string CachedText
-            { get { return cachedText; } }
-
-            public Vector2 CachedPosition
-            { get { return cachedPosition; } }
-
-            public void DrawText(string text, Vector2 position)
-            {
-                cachedText = text;
-                cachedPosition = position;
-            }
-        }
-
         private class FakeMapProvider : IMapProvider
         {
             public Map Map
