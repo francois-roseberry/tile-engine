@@ -173,15 +173,15 @@ namespace TileEngine.Core
         private ScrollingDirection GetScrollingDirection(Point position, Size viewport)
         {
             ScrollingDirection scrolling = ScrollingDirection.NONE;
-            if (position.X < SCROLL_BUFFER)
+            if (position.X >= 0 && position.X < SCROLL_BUFFER)
             {
                 scrolling = ScrollingDirection.LEFT;
             }
-            else if (position.X > viewport.Width - SCROLL_BUFFER)
+            else if (position.X > viewport.Width - SCROLL_BUFFER && position.X <= viewport.Width)
             {
                 scrolling = ScrollingDirection.RIGHT;
             }
-            if (position.Y < SCROLL_BUFFER)
+            if (position.Y >= 0 && position.Y < SCROLL_BUFFER)
             {
                 if (scrolling == ScrollingDirection.LEFT)
                 {
@@ -195,7 +195,7 @@ namespace TileEngine.Core
 
                 return ScrollingDirection.UP;                
             }
-            else if (position.Y > viewport.Height - SCROLL_BUFFER)
+            else if (position.Y > viewport.Height - SCROLL_BUFFER && position.Y <= viewport.Height)
             {
                 if (scrolling == ScrollingDirection.LEFT)
                 {
