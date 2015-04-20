@@ -22,12 +22,12 @@ namespace TileEngine.Xna
             mouseMap = content.Load<Texture2D>("mousemap");
         }
 
-        public void Update(Camera camera)
+        public void Update(int viewportX, int viewportY, Camera camera)
         {
             Preconditions.CheckNotNull(camera, "MousePicker needs a camera to be updated");
 
             MouseState state = Mouse.GetState();
-            Point screenCoordinates = new Point(state.X, state.Y);
+            Point screenCoordinates = new Point(state.X - viewportX, state.Y - viewportY);
             Point worldCoordinates = camera.ScreenToWorld(screenCoordinates);
             hoveredTileCoordinates = WorldToTile(worldCoordinates);
         }

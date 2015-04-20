@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\MapSizeLabel.cs" />
+    <Compile Include="Controls\Menubar.cs" />
     <Compile Include="Controls\Minimap.cs" />
     <Compile Include="Controls\SidePanel.cs" />
     <Compile Include="IControl.cs" />

@@ -16,11 +16,11 @@ namespace TileEngine.Xna.Controls
         private readonly Map map = new Map();
         private Camera camera = Camera.Default(new DefaultCameraInput());
         private readonly MousePicker picker;
-        private Size size;
+        private Rectangle bounds;
 
-        public MapViewport(Size size, ContentManager content)
+        public MapViewport(Rectangle bounds, ContentManager content)
         {
-            this.size = size;
+            this.bounds = bounds;
             
             renderer = new MapRenderer(map, content);
             picker = new MousePicker(content);
@@ -34,19 +34,17 @@ namespace TileEngine.Xna.Controls
             KeyboardState state = Keyboard.GetState();
             renderer.DrawDebugInfo = state.IsKeyDown(Keys.D);
 
-            camera = camera.Update(size, renderer);
-            picker.Update(camera);
+            camera = camera.Update(bounds, renderer);
+            picker.Update(bounds.X, bounds.Y, camera);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            RenderTarget2D target = renderer.Render(spriteBatch, camera, size, picker.HoveredTileCoordinates);
+            RenderTarget2D target = renderer.Render(spriteBatch, camera, new Size(bounds.Width, bounds.Height), picker.HoveredTileCoordinates);
 
             spriteBatch.Begin();
 
-            Rectangle destination = new Rectangle(0, 0, size.Width, size.Height);
-
-            spriteBatch.Draw(target, destination, Color.White);
+            spriteBatch.Draw(target, bounds, Color.White);
 
             spriteBatch.End();
         }

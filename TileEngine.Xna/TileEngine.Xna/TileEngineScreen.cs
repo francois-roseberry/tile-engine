@@ -24,6 +24,7 @@ namespace TileEngine.Xna
         private readonly MouseCursor cursor = new MouseCursor();
         private MapViewport viewport;
         private SidePanel panel;
+        private Menubar menubar;
         private UIRenderer renderer;
 
         public TileEngineScreen(Game game)
@@ -35,8 +36,9 @@ namespace TileEngine.Xna
             spriteBatch = new SpriteBatch(GraphicsDevice);
             renderer = new UIRenderer(GraphicsDevice, Game.Content, spriteBatch);
             cursor.LoadContent(Game.Content);
-            viewport = new MapViewport(Viewport, Game.Content);
+            viewport = new MapViewport(ViewportBounds, Game.Content);
             panel = new SidePanel(SidePanelBounds, viewport.MapProvider);
+            menubar = new Menubar(MenuBarBounds);
         }
 
         /// <summary>
@@ -58,6 +60,7 @@ namespace TileEngine.Xna
             viewport.Draw(spriteBatch);
 
             spriteBatch.Begin();
+            menubar.Draw(renderer);
             panel.Draw(renderer);
          
             cursor.Draw(spriteBatch);
@@ -66,13 +69,21 @@ namespace TileEngine.Xna
             base.Draw(gameTime);
         }
 
-        private Size Viewport
+        private Rectangle ViewportBounds
         {
             get
             {
                 int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
-                int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-                return new Size(viewportWidth, viewportHeight);
+                int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight - 40;
+                return new Rectangle(0, 40, viewportWidth, viewportHeight);
+            }
+        }
+
+        private Rectangle MenuBarBounds
+        {
+            get
+            {
+                return new Rectangle(0, 0, GraphicsDevice.PresentationParameters.BackBufferWidth, 40);
             }
         }
 
@@ -81,9 +92,9 @@ namespace TileEngine.Xna
             get
             {
                 int x = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
-                int y = 0;
+                int y = 40;
                 int width = 220;
-                int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
+                int height = GraphicsDevice.PresentationParameters.BackBufferHeight - 40;
                 return new Rectangle(x, y, width, height);
             }
         }

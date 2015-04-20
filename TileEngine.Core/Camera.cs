@@ -56,9 +56,9 @@ namespace TileEngine.Core
             return new Point(screenCoordinates.X/zoom + x, screenCoordinates.Y/zoom + y);
         }
 
-        public Camera Update(Size viewport, IScrollable scrollable)
+        public Camera Update(Rectangle bounds, IScrollable scrollable)
         {
-            Preconditions.CheckNotNull(viewport, "Camera needs a viewport to be updated");
+            Preconditions.CheckNotNull(bounds, "Camera needs bounds to be updated");
             Preconditions.CheckNotNull(scrollable, "Camera needs an IScrollable to be updated");
 
             ScrollingInput mouseScrolling = input.Scrolling;
@@ -73,7 +73,7 @@ namespace TileEngine.Core
             }
             int dx = 0;
             int dy = 0;
-            ScrollingDirection scrolling = GetScrollingDirection(viewport);
+            ScrollingDirection scrolling = GetScrollingDirection(new Point(input.Position.X - bounds.X, input.Position.Y - bounds.Y), new Size(bounds.Width, bounds.Height));
             switch (scrolling)
             {
                 case ScrollingDirection.UPLEFT:
@@ -90,27 +90,27 @@ namespace TileEngine.Core
                     }
                     break;
                 case ScrollingDirection.UPRIGHT:
-                    if (CanMoveUp() && CanMoveRight(scrollable.Width * zoom - viewport.Width))
+                    if (CanMoveUp() && CanMoveRight(scrollable.Width * zoom - bounds.Width))
                     {
                         dx = 1;
                         dy = -1;
                     }
                     break;
                 case ScrollingDirection.DOWNLEFT:
-                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height) && CanMoveLeft())
+                    if (CanMoveDown(scrollable.Height * zoom - bounds.Height) && CanMoveLeft())
                     {
                         dx = -1;
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWN:
-                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height))
+                    if (CanMoveDown(scrollable.Height * zoom - bounds.Height))
                     {
                         dy = 1;
                     }
                     break;
                 case ScrollingDirection.DOWNRIGHT:
-                    if (CanMoveDown(scrollable.Height * zoom - viewport.Height) && CanMoveRight(scrollable.Width * zoom - viewport.Width))
+                    if (CanMoveDown(scrollable.Height * zoom - bounds.Height) && CanMoveRight(scrollable.Width * zoom - bounds.Width))
                     {
                         dx = 1;
                         dy = 1;
@@ -123,13 +123,13 @@ namespace TileEngine.Core
                     }
                     break;
                 case ScrollingDirection.RIGHT:
-                    if (CanMoveRight(scrollable.Width * zoom - viewport.Width))
+                    if (CanMoveRight(scrollable.Width * zoom - bounds.Width))
                     {
                         dx = 1;
                     }
                     break;
             }
-            return Move(dx, dy, dz, viewport);
+            return Move(dx, dy, dz, new Size(bounds.Width, bounds.Height));
         }
 
         private Camera Move(int dx, int dy, int dz, Size viewport)
@@ -170,10 +170,9 @@ namespace TileEngine.Core
             return y > 0;
         }
 
-        private ScrollingDirection GetScrollingDirection(Size viewport)
+        private ScrollingDirection GetScrollingDirection(Point position, Size viewport)
         {
             ScrollingDirection scrolling = ScrollingDirection.NONE;
-            Point position = input.Position;
             if (position.X < SCROLL_BUFFER)
             {
                 scrolling = ScrollingDirection.LEFT;

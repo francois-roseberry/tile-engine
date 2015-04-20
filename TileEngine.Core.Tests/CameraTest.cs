@@ -9,7 +9,7 @@ namespace TileEngine.Core.Tests
     [TestClass]
     public class CameraTest
     {
-        private static readonly Size VIEWPORT = new Size(200, 200);
+        private static readonly Rectangle VIEWPORT = new Rectangle(10, 10, 200, 200);
 
         private TestContext testContextInstance;
         private FakeMouseInput input;
@@ -70,9 +70,9 @@ namespace TileEngine.Core.Tests
         [TestMethod] 
         public void WhenMouseIsInRightZoneAndCanScrollRightThenShouldScroll()
         {
-            for (int y = 50; y <= VIEWPORT.Height - 50; y++)
+            for (int y = VIEWPORT.Y + 50; y <= VIEWPORT.Y + VIEWPORT.Height - 50; y++)
             {
-                for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
+                for (int x = VIEWPORT.X + VIEWPORT.Width - 50 + 1; x < VIEWPORT.X + VIEWPORT.Width; x++)
                 {
                     input.Position = new Point(x, y);
 
@@ -94,9 +94,9 @@ namespace TileEngine.Core.Tests
         public void WhenMouseIsInLeftZoneThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int y = 50; y <= VIEWPORT.Height - 50; y++)
+            for (int y = VIEWPORT.Y + 50; y <= VIEWPORT.Y + VIEWPORT.Height - 50; y++)
             {
-                for (int x = 0; x < 50; x++)
+                for (int x = VIEWPORT.X; x < VIEWPORT.X + 50; x++)
                 {
                     input.Position = new Point(x, y);
 
@@ -118,9 +118,9 @@ namespace TileEngine.Core.Tests
         public void WhenMouseIsInTopZoneThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = 50; x <= VIEWPORT.Width - 50; x++)
+            for (int x = VIEWPORT.X + 50; x <= VIEWPORT.X + VIEWPORT.Width - 50; x++)
             {
-                for (int y = 0; y < 50; y++)
+                for (int y = VIEWPORT.Y; y < VIEWPORT.Y + 50; y++)
                 {
                     input.Position = new Point(x, y);
 
@@ -141,9 +141,9 @@ namespace TileEngine.Core.Tests
         [TestMethod]
         public void WhenMouseIsInBottomZoneThenShouldScroll()
         {
-            for (int x = 50; x <= VIEWPORT.Width - 50; x++)
+            for (int x = VIEWPORT.X + 50; x <= VIEWPORT.X + VIEWPORT.Width - 50; x++)
             {
-                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
+                for (int y = VIEWPORT.Y + VIEWPORT.Height - 50 + 1; y < VIEWPORT.Y + VIEWPORT.Height; y++)
                 {
                     input.Position = new Point(x, y);
 
@@ -189,9 +189,9 @@ namespace TileEngine.Core.Tests
         public void WhenMouseIsInTopRightCornerThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
+            for (int x = VIEWPORT.X + VIEWPORT.Width - 50 + 1; x < VIEWPORT.X + VIEWPORT.Width; x++)
             {
-                for (int y = 0; y < 50; y++)
+                for (int y = VIEWPORT.Y; y < VIEWPORT.Y + 50; y++)
                 {
                     input.Position = new Point(x, y);
 
@@ -213,9 +213,9 @@ namespace TileEngine.Core.Tests
         public void WhenMouseInInBottomLeftCornerThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = 0; x < 50; x++)
+            for (int x = VIEWPORT.X; x < VIEWPORT.X + 50; x++)
             {
-                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
+                for (int y = VIEWPORT.Y + VIEWPORT.Height - 50 + 1; y < VIEWPORT.Y + VIEWPORT.Height; y++)
                 {
                     input.Position = new Point(x, y);
 
@@ -237,9 +237,9 @@ namespace TileEngine.Core.Tests
         [TestMethod]
         public void WhenMouseIsInBottomRightCornerThenShouldScroll()
         {
-            for (int x = VIEWPORT.Width - 50 + 1; x < VIEWPORT.Width; x++)
+            for (int x = VIEWPORT.X + VIEWPORT.Width - 50 + 1; x < VIEWPORT.X + VIEWPORT.Width; x++)
             {
-                for (int y = VIEWPORT.Height - 50 + 1; y < VIEWPORT.Height; y++)
+                for (int y = VIEWPORT.Y + VIEWPORT.Height - 50 + 1; y < VIEWPORT.Y + VIEWPORT.Height; y++)
                 {
                     input.Position = new Point(x, y);
 
