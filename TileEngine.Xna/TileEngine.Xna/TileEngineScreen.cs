@@ -34,7 +34,7 @@ namespace TileEngine.Xna
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            renderer = new UIRenderer(GraphicsDevice, Game.Content, spriteBatch);
+            renderer = UIRenderer.Create(GraphicsDevice, Game.Content, spriteBatch);
             cursor.LoadContent(Game.Content);
             viewport = new MapViewport(ViewportBounds, Game.Content);
             panel = new SidePanel(SidePanelBounds, viewport.MapProvider);

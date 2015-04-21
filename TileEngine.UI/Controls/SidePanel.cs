@@ -28,9 +28,10 @@ namespace TileEngine.UI.Controls
         public void Draw(IUIRenderer renderer)
         {
             renderer.DrawPanel(bounds);
+            IUIRenderer childRenderer = renderer.Translate(bounds.Location);
             foreach (IControl child in children)
             {
-                child.Draw(bounds.X, bounds.Y, renderer);
+                child.Draw(childRenderer);
             }
         }
     }

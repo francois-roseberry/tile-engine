@@ -12,10 +12,7 @@ namespace TileEngine.UI.Tests.Controls
     [TestClass]
     public class MapSizeLabelTest
     {
-        private const int PARENT_X = 10;
-        private const int PARENT_Y = 20;
-        private const int X = 1;
-        private const int Y = 2;
+        private readonly Point POSITION = new Point(1, 2);
         private MapSizeLabel label;
         private FakeUIRenderer renderer;
         private FakeMapProvider provider;
@@ -39,8 +36,8 @@ namespace TileEngine.UI.Tests.Controls
             renderer = new FakeUIRenderer();
             provider = new FakeMapProvider();
 
-            label = new MapSizeLabel(new Point(X, Y), provider);
-            label.Draw(PARENT_X, PARENT_Y, renderer);
+            label = new MapSizeLabel(POSITION, provider);
+            label.Draw(renderer);
         }
 
         [TestMethod]
@@ -52,7 +49,7 @@ namespace TileEngine.UI.Tests.Controls
         [TestMethod]
         public void AssertPositionDrawn()
         {
-            Assert.AreEqual(new Vector2(PARENT_X + X, PARENT_Y + Y), renderer.CachedPosition);
+            Assert.AreEqual(POSITION, renderer.CachedPosition);
         }
     }
 }

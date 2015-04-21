@@ -8,7 +8,8 @@ namespace TileEngine.UI
 {
     public interface IUIRenderer
     {
-        void DrawText(string text, Vector2 position);
+        IUIRenderer Translate(Point translation);
+        void DrawText(string text, Point position);
         void FillRectangle(Rectangle bounds, Color color);
         void DrawPanel(Rectangle bounds);
     }

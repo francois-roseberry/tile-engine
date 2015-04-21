@@ -11,8 +11,6 @@ namespace TileEngine.UI.Tests.Controls
     [TestClass]
     public class MinimapTest
     {
-        private const int PARENT_X = 10;
-        private const int PARENT_Y = 20;
         private static readonly Rectangle MINIMAP_BOUNDS = new Rectangle(1, 2, 100, 100);
         private Minimap minimap;
         private FakeUIRenderer renderer;
@@ -23,13 +21,13 @@ namespace TileEngine.UI.Tests.Controls
             renderer = new FakeUIRenderer();
             minimap = new Minimap(MINIMAP_BOUNDS);
 
-            minimap.Draw(PARENT_X, PARENT_Y, renderer);
+            minimap.Draw(renderer);
         }
 
         [TestMethod]
         public void AssertPositionDrawn()
         {
-            Assert.AreEqual(new Rectangle(PARENT_X + MINIMAP_BOUNDS.X, PARENT_Y + MINIMAP_BOUNDS.Y, MINIMAP_BOUNDS.Width, MINIMAP_BOUNDS.Height), renderer.CachedRectangle);
+            Assert.AreEqual(MINIMAP_BOUNDS, renderer.CachedRectangle);
         }
 
         [TestMethod]

@@ -7,6 +7,6 @@ namespace TileEngine.UI
 {
     public interface IControl
     {
-        void Draw(int parentX, int parentY, IUIRenderer renderer);
+        void Draw(IUIRenderer renderer);
     }
 }

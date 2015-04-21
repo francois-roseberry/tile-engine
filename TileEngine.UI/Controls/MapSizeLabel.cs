@@ -14,7 +14,6 @@ namespace TileEngine.UI.Controls
     {
         private readonly Point position;
         private readonly IMapProvider provider;
-        private Point point;
 
         public MapSizeLabel(Point position, IMapProvider provider)
         {
@@ -22,10 +21,10 @@ namespace TileEngine.UI.Controls
             this.provider = provider;
         }
 
-        public void Draw(int parentX, int parentY, IUIRenderer renderer)
+        public void Draw(IUIRenderer renderer)
         {
             String text = String.Format("Map size : {0} x {1}", provider.Map.Rows, provider.Map.Columns);
-            renderer.DrawText(text, new Vector2(parentX + position.X, parentY + position.Y));
+            renderer.DrawText(text, position);
         }
 
         public override bool Equals(Object obj)

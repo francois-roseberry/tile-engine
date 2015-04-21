@@ -11,32 +11,48 @@ namespace TileEngine
 {
     class UIRenderer : IUIRenderer
     {
+        private readonly SpriteBatch batch;
+        private readonly Point translation;
         private readonly Texture2D blankTexture;
         private readonly SpriteFont font;
-        private readonly SpriteBatch batch;
 
-        public UIRenderer(GraphicsDevice device, ContentManager content, SpriteBatch batch)
+        public static UIRenderer Create(GraphicsDevice device, ContentManager content, SpriteBatch batch)
         {
-            blankTexture = new Texture2D(device, 1, 1);
+            Texture2D blankTexture = new Texture2D(device, 1, 1);
             blankTexture.SetData(new Color[] { Color.White });
-            font = content.Load<SpriteFont>(@"debug");
-            this.batch = batch;
+            SpriteFont font = content.Load<SpriteFont>(@"debug");
+
+            return new UIRenderer(batch, Point.Zero, blankTexture, font);
         }
 
-        public void DrawText(String text, Vector2 position)
+        private UIRenderer(SpriteBatch batch, Point translation, Texture2D blankTexture, SpriteFont font)
         {
-            batch.DrawString(font, text, position, Color.Black);
+            this.batch = batch;
+            this.translation = translation;
+            this.blankTexture = blankTexture;
+            this.font = font;
+        }
+
+        public IUIRenderer Translate(Point translation)
+        {
+            Point newTranslation = new Point(translation.X + this.translation.X, translation.Y + this.translation.Y);
+            return new UIRenderer(batch, newTranslation, blankTexture, font);
+        }
+
+        public void DrawText(String text, Point position)
+        {
+            batch.DrawString(font, text, new Vector2(position.X + translation.X, position.Y + translation.Y), Color.Black);
         }
 
         public void DrawPanel(Rectangle bounds)
         {
             batch.Draw(blankTexture, bounds, Color.DarkBlue);
-            batch.Draw(blankTexture, new Rectangle(bounds.X + 1, bounds.Y + 1, bounds.Width - 2, bounds.Height - 2), Color.LightBlue);
+            batch.Draw(blankTexture, new Rectangle(translation.X + bounds.X + 1, translation.Y + bounds.Y + 1, bounds.Width - 2, bounds.Height - 2), Color.LightBlue);
         }
 
-        public void FillRectangle(Rectangle rectangle, Color color)
+        public void FillRectangle(Rectangle bounds, Color color)
         {
-            batch.Draw(blankTexture, rectangle, Color.Black);
+            batch.Draw(blankTexture, new Rectangle(translation.X + bounds.X, translation.Y + bounds.Y, bounds.Width, bounds.Height), Color.Black);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace TileEngine.UI.Tests
     class FakeUIRenderer : IUIRenderer
     {
         private string cachedText;
-        private Vector2 cachedPosition;
+        private Point cachedPosition;
         private Rectangle cachedRectangle;
         private Color cachedColor;
         private Rectangle cachedPanel;
@@ -17,7 +17,7 @@ namespace TileEngine.UI.Tests
         public string CachedText
         { get { return cachedText; } }
 
-        public Vector2 CachedPosition
+        public Point CachedPosition
         { get { return cachedPosition; } }
 
         public Rectangle CachedRectangle
@@ -29,7 +29,12 @@ namespace TileEngine.UI.Tests
         public Rectangle CachedPanel
         { get { return cachedPanel; } }
 
-        public void DrawText(string text, Vector2 position)
+        public IUIRenderer Translate(Point translation)
+        {
+            return new FakeUIRenderer();
+        }
+
+        public void DrawText(string text, Point position)
         {
             cachedText = text;
             cachedPosition = position;

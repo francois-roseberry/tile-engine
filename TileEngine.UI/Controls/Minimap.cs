@@ -16,9 +16,9 @@ namespace TileEngine.UI.Controls
             this.bounds = bounds;
         }
 
-        public void Draw(int parentX, int parentY, IUIRenderer renderer)
+        public void Draw(IUIRenderer renderer)
         {
-            renderer.FillRectangle(new Rectangle(bounds.X + parentX, bounds.Y + parentY, bounds.Width, bounds.Height), Color.Black);
+            renderer.FillRectangle(bounds, Color.Black);
         }
 
         public override bool Equals(Object obj)

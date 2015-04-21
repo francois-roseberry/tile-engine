@@ -165,9 +165,9 @@ namespace TileEngine.Core.Tests
         public void WhenMouseIsInTopLeftCornerThenShouldScroll()
         {
             camera = camera.SetPosition(20, 20);
-            for (int x = 0; x < 50; x++)
+            for (int x = VIEWPORT.X; x < VIEWPORT.X + 50; x++)
             {
-                for (int y = 0; y < 50; y++)
+                for (int y = VIEWPORT.Y; y < VIEWPORT.Y + 50; y++)
                 {
                     input.Position = new Point(x, y);
 
