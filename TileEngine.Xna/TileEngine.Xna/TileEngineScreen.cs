@@ -74,8 +74,8 @@ namespace TileEngine.Xna
             get
             {
                 int viewportWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
-                int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight - 40;
-                return new Rectangle(0, 40, viewportWidth, viewportHeight);
+                int viewportHeight = GraphicsDevice.PresentationParameters.BackBufferHeight - 20;
+                return new Rectangle(0, 20, viewportWidth, viewportHeight);
             }
         }
 
@@ -83,7 +83,7 @@ namespace TileEngine.Xna
         {
             get
             {
-                return new Rectangle(0, 0, GraphicsDevice.PresentationParameters.BackBufferWidth, 40);
+                return new Rectangle(0, 0, GraphicsDevice.PresentationParameters.BackBufferWidth, 20);
             }
         }
 
@@ -92,9 +92,9 @@ namespace TileEngine.Xna
             get
             {
                 int x = GraphicsDevice.PresentationParameters.BackBufferWidth - 220;
-                int y = 40;
+                int y = 20;
                 int width = 220;
-                int height = GraphicsDevice.PresentationParameters.BackBufferHeight - 40;
+                int height = GraphicsDevice.PresentationParameters.BackBufferHeight - 20;
                 return new Rectangle(x, y, width, height);
             }
         }

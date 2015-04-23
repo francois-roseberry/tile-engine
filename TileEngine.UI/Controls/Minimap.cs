@@ -21,6 +21,11 @@ namespace TileEngine.UI.Controls
             renderer.FillRectangle(bounds, Color.Black);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override bool Equals(Object obj)
         {
             Minimap other = obj as Minimap;

@@ -9,33 +9,31 @@ using Microsoft.Xna.Framework;
 namespace TileEngine.UI.Tests.Controls
 {
     [TestClass]
-    public class MenubarTest
+    public class FileMenuTest
     {
-        private readonly Rectangle MENUBAR_BOUNDS = new Rectangle(0, 0, 100, 100);
+        private static readonly Point POSITION = new Point(1, 2);
         private FakeUIRenderer renderer;
-        private Menubar menubar;
+        private FileMenu menu;
 
         [TestInitialize]
         public void Setup()
         {
             renderer = new FakeUIRenderer();
 
-            menubar = new Menubar(MENUBAR_BOUNDS);
-            menubar.Draw(renderer);
+            menu = new FileMenu(POSITION);
+            menu.Draw(renderer);
         }
 
         [TestMethod]
         public void AssertPositionDrawn()
         {
-            Assert.AreEqual(MENUBAR_BOUNDS, renderer.CachedPanel);
+            Assert.AreEqual(POSITION, renderer.CachedPosition);
         }
 
         [TestMethod]
-        public void FileMenuShouldBeCreatedAtRightPlace()
+        public void AssertTextDrawn()
         {
-            FileMenu menu = new FileMenu(new Point(4, 4));
-
-            Assert.IsTrue(menubar.Children.Contains(menu));
+            Assert.AreEqual("File", renderer.CachedText);
         }
     }
 }
