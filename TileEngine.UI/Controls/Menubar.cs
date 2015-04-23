@@ -6,28 +6,22 @@ using Microsoft.Xna.Framework;
 
 namespace TileEngine.UI.Controls
 {
-    public class Menubar
+    public class Menubar : CompositeControl
     {
         private readonly Rectangle bounds;
         private readonly List<IControl> children = new List<IControl>();
 
         public Menubar(Rectangle bounds)
+            : base(new FileMenu(new Point(4, 4)))
         {
             this.bounds = bounds;
-            children.Add(new FileMenu(new Point(4, 4)));
         }
 
-        public List<IControl> Children
-        { get { return children; } }
-
-        public void Draw(IUIRenderer renderer)
+        public override void Draw(IUIRenderer renderer)
         {
             renderer.DrawPanel(bounds);
             IUIRenderer childRenderer = renderer.Translate(bounds.Location);
-            foreach (IControl child in children)
-            {
-                child.Draw(childRenderer);
-            }
+            base.Draw(childRenderer);
         }
     }
 }

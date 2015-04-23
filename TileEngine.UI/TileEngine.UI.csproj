@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositeControl.cs" />
     <Compile Include="Controls\FileMenu.cs" />
     <Compile Include="Controls\MapSizeLabel.cs" />
     <Compile Include="Controls\Menubar.cs" />
