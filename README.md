@@ -9,9 +9,10 @@ Features implemented :
 - Highlighting the tile currently hovered by mouse (Mouse picking)
 - Two level of zoom (normal and zoomed-in)
 - Culling
+- Basic UI (partially fonctional)
 
 To be done next :
-- Putting it inside a UI (with a side panel (containing a mini-map) on the right and a menu bar on top)
+- UI : functional minimap and menu, dialogs, adding tools to SidePanel
 - Drawing objects larger than 1 tile
 - Reorientation of map's view (north, south, east, west)
 - Changing the cursor to reflect the action
