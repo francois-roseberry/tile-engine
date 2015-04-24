@@ -8,48 +8,15 @@ using TileEngine.Core;
 
 namespace TileEngine.Core.Tests
 {
-    /// <summary>
-    /// Summary description for MapTest
-    /// </summary>
     [TestClass]
     public class MapTest
     {
         private Map map;
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
 
         [TestInitialize]
         public void Setup() {
             map = new Map();
         }
-
-        /* TODO : to move on MapRenderer when it will be extracted in a game library
-         * [TestMethod]
-        public void WidthShouldBeNumberOfTilesPerRowTimesTileWidth()
-        {
-            Assert.AreEqual((Map.NB_TILES_PER_ROW - 1) * Map.TILE_WIDTH, map.Width);
-        }
-
-        [TestMethod]
-        public void HeightShouldBeNumberOfTilesPerColumnTimesQuarterOfTileHeight()
-        {
-            Assert.AreEqual((Map.NB_TILES_PER_COLUMN - 1) * Map.TILE_HEIGHT / 4, map.Height);
-        }*/
 
         [TestMethod]
         public void ShouldHaveRightNumberOfTiles()
