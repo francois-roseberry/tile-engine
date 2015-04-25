@@ -14,7 +14,7 @@ namespace TileEngine.UI.Controls
     {
         private readonly Rectangle bounds;
 
-        public SidePanel(Rectangle bounds, IMapProvider provider)
+        public SidePanel(Rectangle bounds, IMapSizeProvider provider)
             : base(
                 new Minimap(new Rectangle(10, 10, 200, 200)),
                 new MapSizeLabel(new Point(30, 240), provider))

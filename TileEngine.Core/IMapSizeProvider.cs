@@ -5,8 +5,9 @@ using System.Text;
 
 namespace TileEngine.Core
 {
-    public interface IMapProvider
+    public interface IMapSizeProvider
     {
-        Map Map { get; }
+        int Rows { get; }
+        int Columns { get; }
     }
 }

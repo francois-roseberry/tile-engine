@@ -9,7 +9,7 @@ using TileEngine.Core;
 
 namespace TileEngine.Xna
 {
-    class MapRenderer : IScrollable, IMapProvider
+    class MapRenderer : IScrollable, IMapSizeProvider
     {
         private const int TILE_WIDTH = 64;
         private const int TILE_HEIGHT = 64;
@@ -56,7 +56,9 @@ namespace TileEngine.Xna
             } 
         }
 
-        public Map Map { get { return map; } }
+        public int Rows { get { return map.Rows; } }
+
+        public int Columns { get { return map.Columns; } }
 
         public bool DrawDebugInfo { get; set; }
 

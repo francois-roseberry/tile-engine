@@ -20,7 +20,7 @@ namespace TileEngine.UI.Tests.Controls
         {
             renderer = new FakeUIRenderer();
 
-            panel = new SidePanel(SIDE_PANEL_BOUNDS, new FakeMapProvider());
+            panel = new SidePanel(SIDE_PANEL_BOUNDS, new FakeMapSizeProvider());
             panel.Draw(renderer);
         }
 
@@ -35,7 +35,7 @@ namespace TileEngine.UI.Tests.Controls
         [TestMethod]
         public void MapSizeLabelShouldBeCreatedAtRightPlace()
         {
-            MapSizeLabel label = new MapSizeLabel(new Point(30, 240), new FakeMapProvider());
+            MapSizeLabel label = new MapSizeLabel(new Point(30, 240), new FakeMapSizeProvider());
 
             Assert.IsTrue(panel.Children.Contains(label));
         }

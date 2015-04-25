@@ -11,7 +11,6 @@ namespace TileEngine.Core.Tests
     {
         private static readonly Rectangle VIEWPORT = new Rectangle(10, 10, 200, 200);
 
-        private TestContext testContextInstance;
         private FakeMouseInput input;
         private FakeScrollable scrollable;
         private Camera camera;

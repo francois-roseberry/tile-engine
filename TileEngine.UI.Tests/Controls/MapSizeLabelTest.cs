@@ -15,7 +15,7 @@ namespace TileEngine.UI.Tests.Controls
         private readonly Point POSITION = new Point(1, 2);
         private MapSizeLabel label;
         private FakeUIRenderer renderer;
-        private FakeMapProvider provider;
+        private FakeMapSizeProvider provider;
         private TestContext testContextInstance;
 
         public TestContext TestContext
@@ -34,7 +34,7 @@ namespace TileEngine.UI.Tests.Controls
         public void Setup()
         {
             renderer = new FakeUIRenderer();
-            provider = new FakeMapProvider();
+            provider = new FakeMapSizeProvider();
 
             label = new MapSizeLabel(POSITION, provider);
             label.Draw(renderer);
@@ -43,7 +43,7 @@ namespace TileEngine.UI.Tests.Controls
         [TestMethod]
         public void SizeOfMapShouldBeWritten()
         {
-            Assert.AreEqual("Map size : " + provider.Map.Rows + " x " + provider.Map.Columns, renderer.CachedText);
+            Assert.AreEqual("Map size : " + provider.Rows + " x " + provider.Columns, renderer.CachedText);
         }
 
         [TestMethod]

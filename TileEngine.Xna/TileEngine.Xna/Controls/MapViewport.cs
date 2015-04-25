@@ -27,7 +27,7 @@ namespace TileEngine.Xna.Controls
             
         }
 
-        public IMapProvider MapProvider { get { return renderer; } }
+        public IMapSizeProvider MapProvider { get { return renderer; } }
 
         public void Update()
         {

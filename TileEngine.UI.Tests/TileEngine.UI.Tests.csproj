@@ -54,7 +54,7 @@
     <Compile Include="Controls\MenubarTest.cs" />
     <Compile Include="Controls\MinimapTest.cs" />
     <Compile Include="Controls\SidePanelTest.cs" />
-    <Compile Include="FakeMapProvider.cs" />
+    <Compile Include="FakeMapSizeProvider.cs" />
     <Compile Include="FakeUIRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\MapSizeLabelTest.cs" />
