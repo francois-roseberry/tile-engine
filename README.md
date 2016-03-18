@@ -1,6 +1,6 @@
 # tile-engine [Halted]
 
-Free and open-source 2D isometric tile-engine in XNA.
+2D isometric tile-engine in XNA.
 Any help is welcome !
 
 Features implemented :
